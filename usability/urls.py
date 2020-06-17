@@ -1,7 +1,8 @@
 from django.urls import path
 
-from usability.views import ContactsView
+from .views import ContactsView, IndexView
 
 urlpatterns = [
-    path('contacts/', ContactsView.as_view(), name='contacts')
+    path('', IndexView.as_view(), name='index'),
+    path('contacts/', ContactsView.as_view(), name='contacts'),
 ]

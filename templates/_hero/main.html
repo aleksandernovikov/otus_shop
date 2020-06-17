@@ -1,4 +1,5 @@
-{% load static %}<section class="hero hero-normal">
+{% load static %}
+<section class="hero{% if closed %} hero-normal{% endif %}">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -21,6 +22,8 @@
                         <li><a href="#">Fresh Bananas</a></li>
                     </ul>
                 </div>
+
+
             </div>
             <div class="col-lg-9">
                 <div class="hero__search">
@@ -44,6 +47,18 @@
                         </div>
                     </div>
                 </div>
+
+                {% if not closed %}
+                    <div class="hero__item set-bg" data-setbg="{% static 'img/hero/banner.jpg' %}">
+                        <div class="hero__text">
+                            <span>FRUIT FRESH</span>
+                            <h2>Vegetable <br/>100% Organic</h2>
+                            <p>Free Pickup and Delivery Available</p>
+                            <a href="#" class="primary-btn">SHOP NOW</a>
+                        </div>
+                    </div>
+                {% endif %}
+
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% include '_hero/main.html' with closed=True %}
     {% include 'contacts/main.html' %}
 {% endblock %}
