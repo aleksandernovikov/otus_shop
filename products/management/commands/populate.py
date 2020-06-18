@@ -1,9 +1,9 @@
 from django.core import management
 from django.core.management import BaseCommand
 
+from categories.models import ProductCategory
 from products.models import Product, ProductVariant
 from reference.models import Measure, Characteristic
-from usability.models import ProductCategory
 
 
 class Command(BaseCommand):

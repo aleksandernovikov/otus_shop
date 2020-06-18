@@ -29,9 +29,12 @@ INSTALLED_APPS = [
     'usability',
     'products',
     'orders',
+    'categories',
+    'blog',
 
     # third party apps
     'treebeard',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [

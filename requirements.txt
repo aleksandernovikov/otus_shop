@@ -1,5 +1,7 @@
-asgiref==3.2.8
+asgiref==3.2.9
 Django==3.0.7
 django-treebeard==4.3.1
+easy-thumbnails==2.7
+Pillow==7.1.2
 pytz==2020.1
 sqlparse==0.3.1

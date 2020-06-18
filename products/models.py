@@ -2,8 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from treebeard.mp_tree import MP_Node
 
+from categories.models import ProductCategory
 from reference.models import Characteristic
-from usability.models import ProductCategory
 
 User = get_user_model()
 
