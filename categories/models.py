@@ -7,7 +7,7 @@ class ProductCategory(MP_Node):
     Категория товара
     """
     title = models.CharField(max_length=100)
-
+    slug = models.SlugField()
     # show_subcategory_products = models.BooleanField(default=True)
 
     def __str__(self):
@@ -17,12 +17,4 @@ class ProductCategory(MP_Node):
         unique_together = 'title', 'depth'
 
 
-class PostCategory(MP_Node):
-    """
-    Категория поста
-    """
 
-    title = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.title

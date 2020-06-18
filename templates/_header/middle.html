@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
@@ -12,10 +12,10 @@
             <nav class="header__menu">
                 <ul>
                     <li>
-                        <a href="{% url 'index' %}">Home</a>
+                        <a href="{% url 'index' %}">{% trans 'Home' %}</a>
                     </li>
                     <li>
-                        <a href="{% url 'shop' %}">Shop</a>
+                        <a href="{% url 'shop' %}">{% trans 'Shop' %}</a>
                     </li>
 {#                    <li><a href="#">Pages</a>#}
 {#                        <ul class="header__menu__dropdown">#}
@@ -34,11 +34,11 @@
 {#                        </ul>#}
 {#                    </li>#}
                     <li>
-                        <a href="{% url 'blog' %}">Blog</a>
+                        <a href="{% url 'blog' %}">{% trans 'Blog' %}</a>
                     </li>
                     <li>
 {#                         class="active"#}
-                        <a href="{% url 'contacts' %}">Contact</a>
+                        <a href="{% url 'contacts' %}">{% trans 'Contact' %}</a>
                     </li>
                 </ul>
             </nav>
@@ -49,7 +49,7 @@
                     <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                     <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                 </ul>
-                <div class="header__cart__price">item: <span>$150.00</span></div>
+                <div class="header__cart__price">{% trans 'order' %}: <span>$150.00</span></div>
             </div>
         </div>
     </div>

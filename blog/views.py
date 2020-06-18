@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django import views
 
-# Create your views here.
+from blog.models import Post
+
+
+class PostListView(views.generic.ListView):
+    model = Post
+    template_name = 'usability/'

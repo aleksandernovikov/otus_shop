@@ -1,11 +1,12 @@
-{% load static %}<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg' %}">
+{% load static i18n %}
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg' %}">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
                     <h2>{{ heading }}</h2>
                     <div class="breadcrumb__option">
-                        <a href="{% url 'index' %}">Home</a>
+                        <a href="{% url 'index' %}">{% trans 'Home' %}</a>
                         <span>{{ page_title }}</span>
                     </div>
                 </div>

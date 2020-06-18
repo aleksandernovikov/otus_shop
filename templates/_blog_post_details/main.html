@@ -1,3 +1,4 @@
+{% load i18n %}
 {% include '_blog_post_details/post_heading.html' %}
 
 <section class="blog-details spad">
@@ -13,4 +14,5 @@
     </div>
 </section>
 
-{% include '_related_posts/main.html' with title='Post You May Like' %}
+{% trans 'Post You May Like' as heading %}
+{% include '_related_posts/main.html' with title=heading %}
