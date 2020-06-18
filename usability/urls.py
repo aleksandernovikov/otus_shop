@@ -1,8 +1,14 @@
 from django.urls import path
-
-from .views import ContactsView, IndexView
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
-    path('contacts/', ContactsView.as_view(), name='contacts'),
+    path('', TemplateView.as_view(template_name='usability/pages/index.html'), name='index'),
+    path('contacts/', TemplateView.as_view(template_name='usability/pages/contacts.html'), name='contacts'),
+    path('shop/', TemplateView.as_view(template_name='usability/pages/shop.html'), name='shop'),
+    path('product/', TemplateView.as_view(template_name='usability/pages/product_details.html'),
+         name='product_details'),
+    path('blog/', TemplateView.as_view(template_name='usability/pages/blog.html'), name='blog'),
+    path('post/', TemplateView.as_view(template_name='usability/pages/post.html'), name='post'),
+    path('cart/', TemplateView.as_view(template_name='usability/pages/cart.html'), name='cart'),
+    path('checkout/', TemplateView.as_view(template_name='usability/pages/checkout.html'), name='checkout'),
 ]

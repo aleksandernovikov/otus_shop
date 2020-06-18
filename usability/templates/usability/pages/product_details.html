@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include '_hero/main.html' with closed=True %}
+    {% include '_breadcrumbs/main.html' with heading='Vegetable’s Package' page_title='Vegetable’s Package'%}
+    {% include '_product_details/main.html' %}
+{% endblock %}

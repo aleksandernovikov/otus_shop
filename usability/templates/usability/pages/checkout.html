@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include '_hero/main.html' with closed=True %}
+    {% include '_breadcrumbs/main.html' with heading='Checkout' page_title='Checkout' %}
+
+    {% include '_checkout/main.html' %}
+
+    checkout
+{% endblock %}

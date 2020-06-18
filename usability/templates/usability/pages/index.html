@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% include '_hero/main.html'%}
+    {% include '_hero/main.html' %}
     {% include '_carousel/main.html' %}
     {% include '_featured/main.html' %}
     {% include '_banner/main.html' %}
     {% include '_top_products/main.html' %}
-    {% include '_blog_latest/main.html' %}
+    {% include '_related_posts/main.html' with title='From The Blog' %}
 {% endblock %}

@@ -1,0 +1,16 @@
+{% load static %}
+<div class="product__discount">
+    <div class="section-title product__discount__title">
+        <h2>Sale Off</h2>
+    </div>
+    <div class="row">
+        <div class="product__discount__slider owl-carousel">
+            {% include '_products/discount_product.html' with img='img/product/discount/pd-1.jpg' %}
+            {% include '_products/discount_product.html' with img='img/product/discount/pd-2.jpg' %}
+            {% include '_products/discount_product.html' with img='img/product/discount/pd-3.jpg' %}
+            {% include '_products/discount_product.html' with img='img/product/discount/pd-4.jpg' %}
+            {% include '_products/discount_product.html' with img='img/product/discount/pd-5.jpg' %}
+            {% include '_products/discount_product.html' with img='img/product/discount/pd-6.jpg' %}
+        </div>
+    </div>
+</div>
