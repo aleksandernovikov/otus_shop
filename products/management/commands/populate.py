@@ -29,11 +29,10 @@ class Command(BaseCommand):
     @staticmethod
     def add_categories():
         data = [
-            {'title': 'Пицца', 'children': [
-                {'title': 'На тонком тесте'},
-                {'title': 'На толстом тесте'},
-            ]},
-            {'title': 'Роллы'}
+            {'title': 'Красота'},
+            {'title': 'Еда'},
+            {'title': 'Стиль жизни'},
+            {'title': 'Путешествия'}
         ]
         for params in data:
             # noinspection PyBroadException
@@ -69,8 +68,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         management.call_command('loaddata', 'user', verbosity=0)
 
-        self.add_measures()
-        self.add_characteristics()
+        # self.add_measures()
+        # self.add_characteristics()
         self.add_categories()
-        self.add_products()
-        self.add_product_variants()
+        # self.add_products()
+        # self.add_product_variants()

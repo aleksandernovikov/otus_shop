@@ -1,0 +1,40 @@
+{% load static i18n thumbnail %}
+
+<div class="blog__details__text">
+    {% thumbnail post.image 750x750 crop as main_image %}
+    <img src="{{ main_image.url }}" alt="">
+    <p>{{ post.text }}</p>
+</div>
+<div class="blog__details__content">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="blog__details__author">
+                <div class="blog__details__author__pic">
+                    <img src="{% static 'img/blog/details/details-author.jpg' %}" alt="">
+                </div>
+                <div class="blog__details__author__text">
+                    <h6>{{ post.author }}</h6>
+                    <span>{% if post.author.is_superuser %}{% trans 'Admin' %}{% else %}
+                        {% trans 'User' %}{% endif %}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="blog__details__widget">
+                <ul>
+                    <li><span>{% trans 'Categories' %}:</span>
+                        {{ post.category.title }}
+                    </li>
+                    <li><span>{% trans 'Tags' %}:</span> All, Trending, Cooking, Healthy Food, Life Style</li>
+                </ul>
+                <div class="blog__details__social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

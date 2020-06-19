@@ -8,17 +8,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-5">
-                    {% include '_blog_sidebar/main.html' %}
+                    {% include 'blog/_blog_sidebar/main.html' %}
                 </div>
                 <div class="col-lg-8 col-md-7">
                     <div class="row">
-                        {% include '_blog_posts/item.html' with img='img/blog/blog-1.jpg' %}
-                        {% include '_blog_posts/item.html' with img='img/blog/blog-2.jpg' %}
-                        {% include '_blog_posts/item.html' with img='img/blog/blog-3.jpg' %}
-                        {% include '_blog_posts/item.html' with img='img/blog/blog-4.jpg' %}
-                        {% include '_blog_posts/item.html' with img='img/blog/blog-5.jpg' %}
-                        {% include '_blog_posts/item.html' with img='img/blog/blog-6.jpg' %}
-
+                        {% for post in post_list %}
+                            {% include 'blog/_blog_posts/short_news.html' with post=post %}
+                        {% endfor %}
+                    </div>
+                    <div>
                         {% include '_pagination/main.html' %}
                     </div>
                 </div>

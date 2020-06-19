@@ -27,7 +27,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     publication_date = models.DateTimeField(auto_now=True)
 
-    category = models.ForeignKey(PostCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(PostCategory, related_name='posts', on_delete=models.CASCADE)
 
     image = ThumbnailerImageField(upload_to='posts', blank=True)
 
@@ -35,3 +35,10 @@ class Post(models.Model):
     slug = models.SlugField()
 
     text = models.TextField()
+
+    def __str__(self):
+        return f'{self.category.title} : {self.title}'
+
+    @property
+    def comments_count(self):
+        return 5

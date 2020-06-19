@@ -1,0 +1,32 @@
+{% load static i18n thumbnail %}
+<div class="col-lg-6 col-md-6 col-sm-6">
+    <div class="blog__item">
+
+        <div class="blog__item__pic">
+            {% if post.image %}
+                {% thumbnail post.image 360x258 crop as thumb %}
+                <img src="{{ thumb.url }}" alt="">
+            {% else %}
+                <img src="{% static 'img/blog/blog-1.jpg' %}" alt="">
+            {% endif %}
+        </div>
+
+        <div class="blog__item__text">
+            <ul>
+                <li>
+                    <i class="fa fa-calendar-o"></i> {{ post.publication_date }}
+                </li>
+                <li>
+                    <i class="fa fa-comment-o"></i> {{ post.comments_count }}
+                </li>
+            </ul>
+            <h5>
+                <a href="{% url 'single-post' post.slug %}">{{ post.title }}</a>
+            </h5>
+            <p>{{ post.text|truncatewords:10 }}</p>
+            <a href="{% url 'single-post' post.slug %}" class="blog__btn">
+                {% trans 'READ MORE' %} <span class="arrow_right"></span>
+            </a>
+        </div>
+    </div>
+</div>

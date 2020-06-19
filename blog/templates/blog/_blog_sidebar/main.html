@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n blog_tags %}
 <div class="blog__sidebar">
     <div class="blog__sidebar__search">
         <form action="#">
@@ -7,9 +7,6 @@
         </form>
     </div>
     <div class="blog__sidebar__item">
-        {% include '_blog_sidebar/_categories.html' %}
-    </div>
-    <div class="blog__sidebar__item">
-        {% include '_blog_sidebar/_recent_news.html' %}
+        {% post_categories %}
     </div>
 </div>

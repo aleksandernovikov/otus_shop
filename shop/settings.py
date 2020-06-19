@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'orders',
     'categories',
     'blog',
+    'shop_user',
 
     # third party apps
     'treebeard',
@@ -109,6 +110,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'shop_user.ShopUser'
+
 LANGUAGES = (
     ('en', 'English'),
     ('ru', 'Russian'),
@@ -126,3 +129,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

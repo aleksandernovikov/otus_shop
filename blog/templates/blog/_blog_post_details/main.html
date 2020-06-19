@@ -1,0 +1,18 @@
+{% load i18n blog_tags %}
+{% include 'blog/_blog_post_details/post_heading.html' with post=post %}
+
+<section class="blog-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-5 order-md-1 order-2">
+                {% include 'blog/_blog_sidebar/main.html' %}
+            </div>
+            <div class="col-lg-8 col-md-7 order-md-1 order-1">
+                {% include 'blog/_blog_post_details/post_content.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% trans 'Post You May Like' as related_heading %}
+{% related_posts title=related_heading %}

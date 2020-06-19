@@ -1,0 +1,11 @@
+{% load i18n %}
+<ul>
+    <li>
+        <a href="{% url 'blog' %}">{% trans 'All' %}</a>
+    </li>
+    {% for category in categories %}
+        <li>
+            <a href="{% url 'blog_category' category.slug %}">{{ category.title }} ({{ category.cnt }})</a>
+        </li>
+    {% endfor %}
+</ul>
