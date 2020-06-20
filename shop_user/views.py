@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from django import views
 
-# Create your views here.
+
+class ShopUserProfile(views.generic.TemplateView):
+    template_name = 'shop_user/profile.html'

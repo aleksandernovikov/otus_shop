@@ -1,0 +1,23 @@
+[
+  {
+    "model": "shop_user.shopuser",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$yLDiWxVUrVY0$qMTcJvp5WvkX8z/iQ+0ydRikCSRFiQFLsqPfNk6KNR0=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "user",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-06-19T13:18:10.195Z",
+      "avatar": "",
+      "short_description": "",
+      "middle_name": "",
+      "email": "cahek1@inbox.ru",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

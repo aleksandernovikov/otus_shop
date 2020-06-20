@@ -3,15 +3,18 @@ from django import views
 from blog.models import Post, PostCategory
 
 
-class BlogRootListView(views.generic.ListView):
+class BlogMixin:
+    paginate_by = 4
+
+
+class BlogRootListView(BlogMixin, views.generic.ListView):
     model = Post
     template_name = 'usability/pages/blog.html'
 
 
-class BlogCategoryListView(views.generic.ListView):
+class BlogCategoryListView(BlogMixin, views.generic.ListView):
     model = Post
     template_name = 'usability/pages/blog.html'
-    paginate_by = 6
 
     def get_queryset(self):
         category_slug = self.kwargs.get('slug')

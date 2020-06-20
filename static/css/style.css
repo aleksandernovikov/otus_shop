@@ -3466,3 +3466,57 @@ ol {
 		font-size: 24px;
 	}
 }
+
+/* Login form */
+
+.login__form__title {
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.login__form__title h2 {
+	color: #1c1c1c;
+	font-weight: 700;
+}
+
+.login-form {
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+
+.login-form form input {
+	width: 100%;
+	height: 50px;
+	font-size: 16px;
+	color: #6f6f6f;
+	padding-left: 20px;
+	margin-bottom: 30px;
+	border: 1px solid #ebebeb;
+	border-radius: 4px;
+}
+
+.login-form form input::placeholder {
+	color: #6f6f6f;
+}
+
+.login-form form textarea {
+	width: 100%;
+	height: 150px;
+	font-size: 16px;
+	color: #6f6f6f;
+	padding-left: 20px;
+	margin-bottom: 24px;
+	border: 1px solid #ebebeb;
+	border-radius: 4px;
+	padding-top: 12px;
+	resize: none;
+}
+
+.login-form form textarea::placeholder {
+	color: #6f6f6f;
+}
+
+.login-form form button {
+	font-size: 18px;
+	letter-spacing: 2px;
+}

@@ -26,26 +26,6 @@ class Command(BaseCommand):
         characteristics_objects = [Characteristic(**params) for params in data]
         Characteristic.objects.bulk_create(characteristics_objects, ignore_conflicts=True)
 
-    @staticmethod
-    def add_categories():
-        data = [
-            {'title': 'Красота'},
-            {'title': 'Еда'},
-            {'title': 'Стиль жизни'},
-            {'title': 'Путешествия'}
-        ]
-        for params in data:
-            # noinspection PyBroadException
-            try:
-                root = ProductCategory.add_root(title=params.get('title'))
-            except:
-                continue
-            if params.get('children'):
-                # noinspection PyBroadException
-                try:
-                    [root.add_child(**child_data) for child_data in params.get('children')]
-                except:
-                    continue
 
     @staticmethod
     def add_products():
@@ -66,10 +46,10 @@ class Command(BaseCommand):
         ProductVariant.objects.bulk_create(variant_object, ignore_conflicts=True)
 
     def handle(self, *args, **options):
-        management.call_command('loaddata', 'user', verbosity=0)
+        management.call_command('loaddata', 'user')
+        management.call_command('loaddata', 'blog')
 
         # self.add_measures()
         # self.add_characteristics()
-        self.add_categories()
         # self.add_products()
         # self.add_product_variants()

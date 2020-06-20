@@ -1,0 +1,21 @@
+{% load i18n %}
+<div class="blog__sidebar pt-0">
+    <div class="blog__sidebar__item">
+        <ul>
+            {% if user.is_staff %}
+                <li>
+                    <a href="{% url 'admin:index' %}">{% trans 'Administration' %}</a>
+                </li>
+            {% endif %}
+            <li>
+                <a href="{% url 'user-profile' %}">{% trans 'Profile' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'cart' %}">{% trans 'Cart' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+            </li>
+        </ul>
+    </div>
+</div>

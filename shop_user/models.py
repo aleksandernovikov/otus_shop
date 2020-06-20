@@ -20,4 +20,4 @@ class ShopUser(AbstractUser):
         return full_name if full_name else self.username
 
     def __str__(self):
-        return self.display_name
+        return self.username

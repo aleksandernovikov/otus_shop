@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load blog_tags i18n %}
 
+{% block title %}
+    {% trans 'Cheap to buy delicious fruits and vegetables with delivery' %}
+{% endblock %}
+
 {% block content %}
     {% include '_hero/main.html' %}
     {% include '_carousel/main.html' %}
@@ -10,5 +14,4 @@
 
     {% trans 'From The Blog' as related_heading %}
     {% related_posts title=related_heading %}
-    {#    {% include '_related_posts/main.html' with title='From The Blog' %}#}
 {% endblock %}

@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Blog page' %}
+{% endblock %}
 
 {% block content %}
     {% include '_hero/main.html' with closed=True %}
