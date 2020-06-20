@@ -3,11 +3,19 @@
 
 {% block title %}
     {% trans 'Blog page' %}
+    {% if category %}
+        {% trans 'Category' %} {{ category.title }}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
     {% include '_hero/main.html' with closed=True %}
-    {% include '_breadcrumbs/main.html' with heading='Blog' page_title='Blog' %}
+    {% trans 'Blog' as blog %}
+    {% if category %}
+        {% include '_breadcrumbs/main.html' with heading=blog page_title=category.title %}
+    {% else %}
+        {% include '_breadcrumbs/main.html' with heading=blog page_title=blog %}
+    {% endif %}
 
     <section class="blog spad">
         <div class="container">
@@ -28,5 +36,4 @@
             </div>
         </div>
     </section>
-
 {% endblock %}

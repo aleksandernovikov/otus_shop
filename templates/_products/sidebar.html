@@ -1,18 +1,8 @@
-{% load static i18n %}<div class="sidebar">
+{% load static i18n shop_tags %}
+<div class="sidebar">
     <div class="sidebar__item">
         <h4>{% trans 'Department' %}</h4>
-        <ul>
-            <li><a href="#">Fresh Meat</a></li>
-            <li><a href="#">Vegetables</a></li>
-            <li><a href="#">Fruit & Nut Gifts</a></li>
-            <li><a href="#">Fresh Berries</a></li>
-            <li><a href="#">Ocean Foods</a></li>
-            <li><a href="#">Butter & Eggs</a></li>
-            <li><a href="#">Fastfood</a></li>
-            <li><a href="#">Fresh Onion</a></li>
-            <li><a href="#">Papayaya & Crisps</a></li>
-            <li><a href="#">Oatmeal</a></li>
-        </ul>
+        {% shop_categories place='sidebar' %}
     </div>
     <div class="sidebar__item">
         <h4>{% trans 'Price' %}</h4>

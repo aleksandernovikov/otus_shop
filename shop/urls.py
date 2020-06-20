@@ -11,6 +11,7 @@ urlpatterns = [
     path('', include('shop_user.urls')),
 
     path('', include('usability.urls')),
+    path('shop/', include('products.urls')),
     path('blog/', include('blog.urls')),
 ]
 

@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+{% block title %}
+    {% trans 'Shop' %}
+{% endblock %}
+
 {% block content %}
     {% include '_hero/main.html' with closed=True %}
+
     {% trans 'Organic Shop' as heading %}
     {% trans 'Shop' as page_title %}
     {% include '_breadcrumbs/main.html' with heading=heading page_title=page_title %}
+
     {% include '_products/main.html' %}
 {% endblock %}

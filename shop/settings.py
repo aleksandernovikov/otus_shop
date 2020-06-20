@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'usability',
     'products',
     'orders',
-    'categories',
     'blog',
     'shop_user',
 

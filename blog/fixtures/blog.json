@@ -42,5 +42,70 @@
       "title": "\u041f\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u044f",
       "slug": "puteshestviya"
     }
+  },
+  {
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "publication_date": "2020-06-20T14:37:38.631Z",
+      "category": 1,
+      "image": "posts/krasota.jpg",
+      "title": "\u041f\u043e\u0441\u0442 \u043f\u0440\u043e \u043a\u0440\u0430\u0441\u043e\u0442\u0443",
+      "slug": "post-pro-krasotu",
+      "text": "These named URLs are registered with the application namespace admin, and with an instance namespace corresponding to the name of the Site instance.\r\n\r\nSo - if you wanted to get a reference to the Change view for a particular Choice object (from the polls application) in the default admin, you would call:"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 2,
+    "fields": {
+      "author": 1,
+      "publication_date": "2020-06-20T14:39:48.322Z",
+      "category": 2,
+      "image": "posts/eda.jpg",
+      "title": "\u041f\u0443\u0431\u043b\u0438\u043a\u0430\u0446\u0438\u044f \u043e \u0435\u0434\u0435",
+      "slug": "publikaciya-o-ede",
+      "text": "Since the Author model only has three fields, name, title, and birth_date, the forms resulting from the above declarations will contain exactly the same fields.\r\n\r\nModelAdmin.fields\u00b6\r\n\r\n    Use the fields option to make simple layout changes in the forms on the \u201cadd\u201d and \u201cchange\u201d pages such as showing only a subset of available fields, modifying their order, or grouping them into rows. For example, you could define a simpler version of the admin form for the django.contrib.flatpages.models.FlatPage model as follows:"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 3,
+    "fields": {
+      "author": 1,
+      "publication_date": "2020-06-20T14:41:36.979Z",
+      "category": 3,
+      "image": "posts/stil-zhizni.jpeg",
+      "title": "\u041f\u0440\u043e \u0441\u0442\u0438\u043b\u044c \u0436\u0438\u0437\u043d\u0438",
+      "slug": "pro-stil-zhizni",
+      "text": "If neither fields nor fieldsets options are present, Django will default to displaying each field that isn\u2019t an AutoField and has editable=True, in a single fieldset, in the same order as the fields are defined in the model.\r\n\r\nModelAdmin.fieldsets\u00b6\r\n\r\n    Set fieldsets to control the layout of admin \u201cadd\u201d and \u201cchange\u201d pages.\r\n\r\n    fieldsets is a list of two-tuples, in which each two-tuple represents a <fieldset> on the admin form page. (A <fieldset> is a \u201csection\u201d of the form.)\r\n\r\n    The two-tuples are in the format (name, field_options), where name is a string representing the title of the fieldset and field_options is a dictionary of information about the fieldset, including a list of fields to be displayed in it.\r\n\r\n    A full example, taken from the django.contrib.flatpages.models.FlatPage model:"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 4,
+    "fields": {
+      "author": 1,
+      "publication_date": "2020-06-20T14:43:00.247Z",
+      "category": 4,
+      "image": "posts/puteshestviya.jpg",
+      "title": "\u041e \u043f\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u044f\u0445",
+      "slug": "o-puteshestviyah",
+      "text": "LogEntry.change_message\u00b6\r\n\r\n    The detailed description of the modification. In the case of an edit, for example, the message contains a list of the edited fields. The Django admin site formats this content as a JSON structure, so that get_change_message() can recompose a message translated in the current user language. Custom code might set this as a plain string though. You are advised to use the get_change_message() method to retrieve this value instead of accessing it directly."
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 5,
+    "fields": {
+      "author": 1,
+      "publication_date": "2020-06-20T16:09:13.949Z",
+      "category": 4,
+      "image": "posts/puteshestviya2.jpg",
+      "title": "\u0421\u043d\u043e\u0432\u0430 \u043e  \u043f\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u044f\u0445",
+      "slug": "snova-o-piteshestviyah",
+      "text": "This will find the first registered instance of the admin application (whatever the instance name), and resolve to the view for changing poll.Choice instances in that instance.\r\n\r\nIf you want to find a URL in a specific admin instance, provide the name of that instance as a current_app hint to the reverse call. For example, if you specifically wanted the admin view from the admin instance named custom, you would need to call:\r\n\r\n>>> change_url = reverse('admin:polls_choice_change', args=(c.id,), current_app='custom')\r\n\r\nFor more details, see the documentation on reversing namespaced URLs.\r\n\r\nTo allow easier reversing of the admin urls in templates, Django provides an admin_urlname filter which takes an action as argument:\r\n\r\n{% load admin_urls %}\r\n<a href=\"{% url opts|admin_urlname:'add' %}\">Add user</a>\r\n<a href=\"{% url opts|admin_urlname:'delete' user.pk %}\">Delete this user</a>\r\n\r\nThe action in the examples above match the last part of the URL names for ModelAdmin instances described above. The opts variable can be any object which has an app_label and model_name attributes and is usually supplied by the admin views for the current model."
+    }
   }
 ]

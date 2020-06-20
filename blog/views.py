@@ -20,6 +20,15 @@ class BlogCategoryListView(BlogMixin, views.generic.ListView):
         category_slug = self.kwargs.get('slug')
         return self.model.objects.filter(category__slug=category_slug)
 
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+
+        ctx.update({
+            'category': PostCategory.objects.get(slug=self.kwargs.get('slug'))
+        })
+        
+        return ctx
+
 
 class BlogPostView(views.generic.DetailView):
     model = Post

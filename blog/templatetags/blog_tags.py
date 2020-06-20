@@ -6,8 +6,8 @@ from ..models import PostCategory, Post
 register = template.Library()
 
 
-@register.inclusion_tag('tags/categories.html', takes_context=True)
-def post_categories(context):
+@register.inclusion_tag('tags/blog_categories.html')
+def post_categories():
     categories = PostCategory.objects.values('title', 'slug').annotate(cnt=Count('posts'))
     return {
         'categories': categories
