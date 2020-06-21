@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.functional import cached_property
 from easy_thumbnails.fields import ThumbnailerImageField
 from pytils.translit import slugify
 from django.utils.translation import gettext_lazy as _
@@ -43,9 +44,15 @@ class ProductCategory(MP_Node):
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', related_name='product_images', on_delete=models.CASCADE)
     image = ThumbnailerImageField(upload_to='products')
     order = models.PositiveSmallIntegerField(default=0, db_index=True)
+
+    def __str__(self):
+        return self.image.url
+
+    class Meta:
+        ordering = ('order',)
 
 
 class Product(models.Model):
@@ -67,9 +74,15 @@ class Product(models.Model):
 
     images = models.ManyToManyField(ProductImage, related_name='products')
 
+    @cached_property
+    def main_image(self):
+        i = self.product_images.first()
+        return i.image
+
     @property
     def discount_percent(self):
-        return round(self.sale_price / self.price * 100)
+        percent = self.sale_price / self.price
+        return round((1 - percent) * 100)
 
     def __str__(self):
         return self.title

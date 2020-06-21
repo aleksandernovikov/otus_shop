@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-20 16:07+0300\n"
+"POT-Creation-Date: 2020-06-21 19:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,17 +20,26 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: blog/models.py:27
+msgid "Post category"
+msgstr "Категория публикации"
+
+#: blog/models.py:28
+#| msgid "Categories"
+msgid "Post categories"
+msgstr "Категории публикации"
+
 #: blog/templates/blog/_blog_post_details/main.html:17
 msgid "Post You May Like"
 msgstr "Публикации которые могут вам понравится"
 
 #: blog/templates/blog/_blog_post_details/post_content.html:17
 msgid "Admin"
-msgstr ""
+msgstr "Администратор"
 
 #: blog/templates/blog/_blog_post_details/post_content.html:18
 msgid "User"
-msgstr ""
+msgstr "Пользователь"
 
 #: blog/templates/blog/_blog_post_details/post_content.html:25
 #: blog/templates/blog/_blog_sidebar/_categories.html:1
@@ -50,7 +59,7 @@ msgid "READ MORE"
 msgstr "Читать далее"
 
 #: blog/templates/blog/_blog_sidebar/_categories.html:4
-#: blog/templates/tags/categories.html:4
+#: blog/templates/tags/blog_categories.html:4
 msgid "All"
 msgstr "Все"
 
@@ -62,6 +71,33 @@ msgstr "Свежие новости"
 msgid "Search..."
 msgstr "Поиск..."
 
+#: products/models.py:22
+#| msgid "Short Description"
+msgid "Category description"
+msgstr "Описание категории"
+
+#: products/models.py:24
+msgid "Show in top"
+msgstr "Показывать вверху"
+
+#: products/models.py:25
+msgid "Show in sidebar"
+msgstr "Показывать в сайдбаре"
+
+#: products/models.py:31
+#| msgid "Products found"
+msgid "Product category"
+msgstr "Категория продукта"
+
+#: products/models.py:32
+#| msgid "Categories"
+msgid "Product categories"
+msgstr "Категории продуктов"
+
+#: products/models.py:69
+msgid "Sale price"
+msgstr "Цена распродажи"
+
 #: shop_user/models.py:9
 msgid "Short Description"
 msgstr "Короткое описание"
@@ -71,10 +107,34 @@ msgid "Middle Name"
 msgstr "Отчество"
 
 #: shop_user/models.py:13
-#, fuzzy
 #| msgid "Address"
 msgid "email address"
 msgstr "Адрес электронной почты"
+
+#: shop_user/templates/shop_user/_profile_form.html:10
+msgid "Save"
+msgstr "Сохранить"
+
+#: shop_user/templates/shop_user/_profile_sidebar.html:7
+msgid "Administration"
+msgstr "Админка"
+
+#: shop_user/templates/shop_user/_profile_sidebar.html:11
+msgid "Profile"
+msgstr "Профиль"
+
+#: shop_user/templates/shop_user/_profile_sidebar.html:14
+msgid "Cart"
+msgstr "Корзина"
+
+#: shop_user/templates/shop_user/_profile_sidebar.html:17
+msgid "Logout"
+msgstr "Выход"
+
+#: shop_user/templates/shop_user/profile.html:5
+#: shop_user/templates/shop_user/profile.html:14
+msgid "User profile"
+msgstr "Профиль пользователя"
 
 #: templates/_breadcrumbs/main.html:9 templates/_header/middle.html:15
 msgid "Home"
@@ -121,7 +181,7 @@ msgstr "Перейти к оплате"
 msgid "Products"
 msgstr "Продукты"
 
-#: templates/_cart_products/table.html:9 templates/_products/sidebar.html:18
+#: templates/_cart_products/table.html:9 templates/_products/sidebar.html:8
 msgid "Price"
 msgstr "Цена"
 
@@ -256,11 +316,13 @@ msgid "Subscribe"
 msgstr "Подписаться"
 
 #: templates/_header/middle.html:18
-#: usability/templates/usability/pages/shop.html:7
+#: usability/templates/usability/pages/shop.html:5
+#: usability/templates/usability/pages/shop.html:12
 msgid "Shop"
 msgstr "Магазин"
 
 #: templates/_header/middle.html:37
+#: usability/templates/usability/pages/blog.html:13
 msgid "Blog"
 msgstr "Блог"
 
@@ -280,7 +342,7 @@ msgstr "Бесплатная доставка на все заказы от 2000
 msgid "Login"
 msgstr "Вход"
 
-#: templates/_hero/categories.html:4
+#: templates/_hero/categories.html:5
 msgid "All departments"
 msgstr "Все отделы"
 
@@ -308,54 +370,70 @@ msgstr "ПОИСК"
 msgid "Related Product"
 msgstr "Рекомендованные продукты"
 
-#: templates/_products/main.html:18
+#: templates/_products/_products_heading.html:6
 msgid "Sort By"
 msgstr "Сорт."
 
-#: templates/_products/main.html:20
+#: templates/_products/_products_heading.html:8
 msgid "Default"
 msgstr "Умолчание"
 
-#: templates/_products/main.html:21
+#: templates/_products/_products_heading.html:9
 msgid "Sort by popularity"
 msgstr "Популярность"
 
-#: templates/_products/main.html:27
+#: templates/_products/_products_heading.html:15
 msgid "Products found"
 msgstr "Продуктов найдено"
 
-#: templates/_products/sidebar.html:3
+#: templates/_products/main.html:16
+msgid "Sale Off"
+msgstr "Распродажа"
+
+#: templates/_products/sidebar.html:4
 msgid "Department"
 msgstr "Отдел"
 
-#: templates/_products/sidebar.html:35
+#: templates/_products/sidebar.html:25
 msgid "Colors"
 msgstr "Цвета"
 
-#: templates/_products/sidebar.html:74
+#: templates/_products/sidebar.html:64
 msgid "Popular Size"
 msgstr "Популярный размер"
 
-#: templates/_products/sidebar.html:104
+#: templates/_products/sidebar.html:94
 msgid "Latest Products"
 msgstr "Последние поступления"
 
-#: templates/registration/_login_form.html:4
+#: templates/registration/_login_form.html:5
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
 
-#: templates/registration/_login_form.html:9
+#: templates/registration/_login_form.html:10
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
 msgstr ""
 
-#: templates/registration/_login_form.html:11
+#: templates/registration/_login_form.html:12
 msgid "Please login to see this page."
 msgstr ""
 
-#: templates/registration/_login_form.html:28
+#: templates/registration/_login_form.html:34
 msgid "LOGIN"
+msgstr ""
+
+#: templates/registration/logged_out.html:5
+msgid "Logged out"
+msgstr ""
+
+#: templates/registration/logged_out.html:14
+msgid "You logged out!"
+msgstr ""
+
+#: templates/registration/logged_out.html:21
+msgid "Click here to login again."
 msgstr ""
 
 #: templates/registration/login.html:5
@@ -370,17 +448,33 @@ msgstr "Вход"
 msgid "Lost password?"
 msgstr "Пароль аккаунта"
 
+#: usability/templates/usability/pages/blog.html:5
+#, fuzzy
+#| msgid "Login"
+msgid "Blog page"
+msgstr "Вход"
+
+#: usability/templates/usability/pages/blog.html:7
+#, fuzzy
+#| msgid "Categories"
+msgid "Category"
+msgstr "Категории"
+
 #: usability/templates/usability/pages/contacts.html:5
 #, fuzzy
 #| msgid "Contact"
 msgid "Contacts page"
 msgstr "Контакты"
 
-#: usability/templates/usability/pages/index.html:11
+#: usability/templates/usability/pages/index.html:5
+msgid "Cheap to buy delicious fruits and vegetables with delivery"
+msgstr ""
+
+#: usability/templates/usability/pages/index.html:15
 msgid "From The Blog"
 msgstr "Из блога"
 
-#: usability/templates/usability/pages/shop.html:6
+#: usability/templates/usability/pages/shop.html:11
 msgid "Organic Shop"
 msgstr "Магазин органической продукции"
 

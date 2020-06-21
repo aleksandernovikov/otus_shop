@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n shop_tags %}
 <section class="product spad">
     <div class="container">
         <div class="row">
@@ -8,51 +8,42 @@
             </div>
 
             <div class="col-lg-9 col-md-7">
-                {% include '_products/sale.html' %}
 
-                {# Top products Sort by, Products found, View #}
-                <div class="filter__item">
+                {# Sale block #}
+                {#                {% include '_products/sale.html' %}#}
+                <div class="product__discount">
+                    <div class="section-title product__discount__title">
+                        <h2>{% trans 'Sale Off' %}</h2>
+                    </div>
                     <div class="row">
-                        <div class="col-lg-4 col-md-5">
-                            <div class="filter__sort">
-                                <span>{% trans 'Sort By' %}</span>
-                                <select>
-                                    <option value="0">{% trans 'Default' %}</option>
-                                    <option value="1">{% trans 'Sort by popularity' %}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <div class="filter__found">
-                                <h6><span>16</span> {% trans 'Products found' %}</h6>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-3">
-                            <div class="filter__option">
-                                <span class="icon_grid-2x2"></span>
-                                <span class="icon_ul"></span>
-                            </div>
-                        </div>
+                        {% sale_block %}
                     </div>
                 </div>
 
-                <div class="row">
-                    {% include '_products/normal_product.html' with img='img/product/product-1.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-2.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-3.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-4.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-5.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-6.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-7.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-8.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-9.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-10.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-11.jpg' %}
-                    {% include '_products/normal_product.html' with img='img/product/product-12.jpg' %}
 
+                    {# Top products Sort by, Products found, View #}
+                    {% include '_products/_products_heading.html' %}
+
+                    <div class="row">
+                        {% for product in product_list %}
+                            {% include '_products/normal_product.html' with product=product %}
+                        {% endfor %}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-1.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-2.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-3.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-4.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-5.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-6.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-7.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-8.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-9.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-10.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-11.jpg' %}#}
+                        {#                    {% include '_products/normal_product.html' with img='img/product/product-12.jpg' %}#}
+
+                    </div>
+                    {% include '_pagination/main.html' %}
                 </div>
-                {% include '_pagination/main.html' %}
             </div>
         </div>
-    </div>
 </section>

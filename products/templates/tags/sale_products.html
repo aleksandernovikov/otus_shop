@@ -1,0 +1,5 @@
+<div class="product__discount__slider owl-carousel">
+    {% for sale_product in sale_products %}
+        {% include '_products/discount_product.html' with product=sale_product %}
+    {% endfor %}
+</div>
