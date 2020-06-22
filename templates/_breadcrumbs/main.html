@@ -7,7 +7,13 @@
                     <h2>{{ heading }}</h2>
                     <div class="breadcrumb__option">
                         <a href="{% url 'index' %}">{% trans 'Home' %}</a>
-                        <span>{{ page_title }}</span>
+                        {% if product %}
+                            <a href="{% url 'shop' %}">{% trans 'Shop' %}</a>
+                            <a href="{% url 'shop-category' product.category.slug %}">{{ product.category.title }}</a>
+                            <span>{{ product.title }}</span>
+                        {% else %}
+                            <span>{{ page_title }}</span>
+                        {% endif %}
                     </div>
                 </div>
             </div>

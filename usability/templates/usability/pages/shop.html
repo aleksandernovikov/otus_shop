@@ -3,14 +3,21 @@
 
 {% block title %}
     {% trans 'Shop' %}
+    {% if category %}
+        {{ category.title }}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
     {% include '_hero/main.html' with closed=True %}
 
-    {% trans 'Organic Shop' as heading %}
-    {% trans 'Shop' as page_title %}
-    {% include '_breadcrumbs/main.html' with heading=heading page_title=page_title %}
+    {% trans 'Delicious Food Store' as heading %}
+    {% if category %}
+        {% include '_breadcrumbs/main.html' with heading=heading page_title=category.title %}
+    {% else %}
+        {% trans 'All products' as page_title %}
+        {% include '_breadcrumbs/main.html' with heading=heading page_title=page_title %}
+    {% endif %}
 
     {% include '_products/main.html' %}
 {% endblock %}

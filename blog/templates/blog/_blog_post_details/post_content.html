@@ -3,7 +3,7 @@
 <div class="blog__details__text">
     {% thumbnail post.image 750x750 crop as main_image %}
     <img src="{{ main_image.url }}" alt="">
-    <p>{{ post.text }}</p>
+    <p>{{ post.text|safe }}</p>
 </div>
 <div class="blog__details__content">
     <div class="row">

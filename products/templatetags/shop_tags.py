@@ -1,6 +1,7 @@
 from django import template
 
-from ..models import ProductCategory, Product
+from ..models.product import Product
+from ..models.product_category import ProductCategory
 
 register = template.Library()
 
@@ -21,4 +22,13 @@ def sale_block(max_count=6):
 
     return {
         'sale_products': products
+    }
+
+
+@register.inclusion_tag('tags/shop_categories_carousel.html')
+def shop_categories_carousel():
+    categories = ProductCategory.objects.filter(image__isnull=False)[:8]
+
+    return {
+        'categories': categories
     }

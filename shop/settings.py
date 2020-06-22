@@ -25,16 +25,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # my apps
-    'reference',
+    # 'reference',
     'usability',
     'products',
-    'orders',
     'blog',
     'shop_user',
 
     # third party apps
     'treebeard',
     'easy_thumbnails',
+    'ckeditor',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'usability.context_processors.site_data',
             ],
         },
     },
@@ -130,6 +132,24 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# available in templates via context manager
+SITE_DATA = {
+    'title': 'Ogani',
+    'phone': '+7 (499) 938-92-02',
+    'email': 'hello@otus-shop.com',
+    'header_text': 'Бесплатная доставка на все заказы от 2000 руб.',
+
+    'facebook_url': 'https://facebook.com/',
+    'twitter_url': 'https://twitter.com/',
+    'linkedin_url': 'https://linkedin.com',
+    'pinterest_url': 'https://www.pinterest.com/',
+    'instagram_url': 'https://www.instagram.com/',
+
+    'currency': 'руб.',
+    'address': '60-49 Road 11378 New York'
+}

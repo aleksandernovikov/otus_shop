@@ -23,7 +23,7 @@
             <h5>
                 <a href="{% url 'single-post' post.slug %}">{{ post.title }}</a>
             </h5>
-            <p>{{ post.text|truncatewords:10 }}</p>
+            <p>{{ post.short_text |truncatewords:10 }}</p>
             <a href="{% url 'single-post' post.slug %}" class="blog__btn">
                 {% trans 'READ MORE' %} <span class="arrow_right"></span>
             </a>

@@ -1,0 +1,167 @@
+[
+  {
+    "model": "products.productcategory",
+    "pk": 1,
+    "fields": {
+      "path": "0001",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u0421\u0432\u0435\u0436\u0435\u0435 \u043c\u044f\u0441\u043e",
+      "slug": "svezhee-myaso",
+      "image": "shop_categories/svezhee_myaso.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 2,
+    "fields": {
+      "path": "0002",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u041e\u0432\u043e\u0449\u0438",
+      "slug": "ovoshi",
+      "image": "shop_categories/ovoshi.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 3,
+    "fields": {
+      "path": "0003",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u0424\u0440\u0443\u043a\u0442\u044b \u0438 \u043e\u0440\u0435\u0445\u043e\u0432\u044b\u0435 \u043f\u043e\u0434\u0430\u0440\u043a\u0438",
+      "slug": "frukty-i-orehovye-podarki",
+      "image": "shop_categories/orehovie_podarki.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 4,
+    "fields": {
+      "path": "0004",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u0421\u0432\u0435\u0436\u0438\u0435 \u044f\u0433\u043e\u0434\u044b",
+      "slug": "svezhie-yagody",
+      "image": "shop_categories/svezhie_yagody.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 5,
+    "fields": {
+      "path": "0005",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u041c\u043e\u0440\u0441\u043a\u0438\u0435 \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u044b",
+      "slug": "morskie-produkty",
+      "image": "shop_categories/moreprodukty.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 6,
+    "fields": {
+      "path": "0006",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u041c\u0430\u0441\u043b\u043e \u0438 \u044f\u0439\u0446\u0430",
+      "slug": "maslo-i-yajca",
+      "image": "shop_categories/maslo_yaitsa.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 7,
+    "fields": {
+      "path": "0007",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u0424\u0430\u0441\u0442\u0444\u0443\u0434",
+      "slug": "fastfud",
+      "image": "shop_categories/fast_food.jpeg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 8,
+    "fields": {
+      "path": "0008",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u0417\u0435\u043b\u0435\u043d\u044c",
+      "slug": "zelen",
+      "image": "shop_categories/zelen.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 9,
+    "fields": {
+      "path": "0009",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u041f\u0430\u043f\u0430\u0439\u044f \u0438 \u0447\u0438\u043f\u0441\u044b",
+      "slug": "papajya-i-chipsy",
+      "image": "shop_categories/papaiya-v2.orig.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 10,
+    "fields": {
+      "path": "000A",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u041a\u0430\u0448\u0438",
+      "slug": "kashi",
+      "image": "shop_categories/kashi.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": true
+    }
+  },
+  {
+    "model": "products.productcategory",
+    "pk": 11,
+    "fields": {
+      "path": "000B",
+      "depth": 1,
+      "numchild": 0,
+      "title": "\u0421\u0432\u0435\u0436\u0438\u0435 \u0431\u0430\u043d\u0430\u043d\u044b",
+      "slug": "svezhie-banany",
+      "image": "shop_categories/banani.jpg",
+      "description": "",
+      "show_in_top": true,
+      "show_in_sidebar": false
+    }
+  }
+]

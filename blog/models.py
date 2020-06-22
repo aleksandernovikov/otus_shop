@@ -1,6 +1,7 @@
 import pytils as pytils
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from easy_thumbnails.fields import ThumbnailerImageField
 from treebeard.mp_tree import MP_Node
@@ -47,3 +48,10 @@ class Post(models.Model):
     @property
     def comments_count(self):
         return 5
+
+    @cached_property
+    def short_text(self):
+        import re
+        from django.utils.html import strip_tags
+        text_only = re.sub('[ \t\n]+', ' ', strip_tags(self.text))
+        return text_only.strip()

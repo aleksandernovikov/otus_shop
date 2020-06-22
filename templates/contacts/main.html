@@ -1,4 +1,7 @@
-{% include '_breadcrumbs/main.html' with heading='Contact Us' page_title='Contact Us' %}
+{% load i18n %}
+{% trans 'Contact Us' as heading%}
+{% trans 'Contact Us' as page_title %}
+{% include '_breadcrumbs/main.html' with heading=heading page_title=page_title %}
 
 {% include 'contacts/top.html' %}
 {% include 'contacts/map.html' %}

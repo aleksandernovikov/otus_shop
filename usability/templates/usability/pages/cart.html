@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Shopping Cart' %}
+{% endblock %}
 
 {% block content %}
     {% include '_hero/main.html' with closed=True %}
-    {% include '_breadcrumbs/main.html' with heading='Shopping Cart' page_title='Shopping Cart' %}
+
+    {% trans 'Shopping Cart' as heading %}
+    {% trans 'Shopping Cart' as page_title %}
+    {% include '_breadcrumbs/main.html' with heading=heading page_title=page_title %}
+
     {% include '_cart_products/main.html' %}
 {% endblock %}

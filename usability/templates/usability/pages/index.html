@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load blog_tags i18n %}
+{% load blog_tags i18n shop_tags %}
 
 {% block title %}
     {% trans 'Cheap to buy delicious fruits and vegetables with delivery' %}
@@ -7,7 +7,9 @@
 
 {% block content %}
     {% include '_hero/main.html' %}
-    {% include '_carousel/main.html' %}
+
+    {% shop_categories_carousel %}
+
     {% include '_featured/main.html' %}
     {% include '_banner/main.html' %}
     {% include '_top_products/main.html' %}

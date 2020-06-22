@@ -7,9 +7,9 @@
                         <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
                     </div>
                     <ul>
-                        <li>{% trans 'Address' %}: 60-49 Road 11378 New York</li>
-                        <li>{% trans 'Phone' %}: +65 11.188.888</li>
-                        <li>{% trans 'Email' %}: hello@colorlib.com</li>
+                        <li>{% trans 'Address' %}: {{ site.address }}</li>
+                        <li>{% trans 'Phone' %}: {{ site.phone }}</li>
+                        <li>Email: {{ site.email }}</li>
                     </ul>
                 </div>
             </div>
@@ -45,10 +45,10 @@
                         <button type="submit" class="site-btn">{% trans 'Subscribe' %}</button>
                     </form>
                     <div class="footer__widget__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                        <a href="{{ site.facebook_url }}"><i class="fa fa-facebook"></i></a>
+                        <a href="{{ site.instagram_url }}"><i class="fa fa-instagram"></i></a>
+                        <a href="{{ site.twitter_url }}"><i class="fa fa-twitter"></i></a>
+                        <a href="{{ site.pinterest_url }}"><i class="fa fa-pinterest"></i></a>
                     </div>
                 </div>
             </div>

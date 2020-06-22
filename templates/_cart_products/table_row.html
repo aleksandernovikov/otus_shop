@@ -1,21 +1,23 @@
-{% load static %}
+{% load thumbnail %}
 <tr>
     <td class="shoping__cart__item">
-        <img src="{% static img %}" alt="">
-        <h5>Vegetable’s Package</h5>
+        {% thumbnail product.product.main_image 100x100 crop as thumb %}
+        <img src="{{ thumb.url }}" alt="">
+        <h5>{{ product.product.title }}</h5>
     </td>
     <td class="shoping__cart__price">
-        $55.00
+        {{ product.product.price }}
     </td>
     <td class="shoping__cart__quantity">
         <div class="quantity">
             <div class="pro-qty">
-                <input type="text" value="1">
+                <input type="text" value="{{ product.count }}">
             </div>
         </div>
     </td>
     <td class="shoping__cart__total">
-        $110.00
+        {% widthratio product.product.price 1 product.count %}
+        {#        TODO: сделать нормально #}
     </td>
     <td class="shoping__cart__item__close">
         <span class="icon_close"></span>
