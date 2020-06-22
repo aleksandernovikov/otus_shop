@@ -1,7 +1,8 @@
 from django import views
 from django.db.models import Sum, DecimalField
+from django.db.models import F
 
-from products.models.cart import CartProduct
+from .models.cart import CartProduct
 from .models.product_category import ProductCategory
 from .models.product import Product
 
@@ -48,14 +49,15 @@ class CartProductView(views.generic.TemplateView):
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(**kwargs)
 
-        from django.db.models import F
-        # filter(owner=self.request.user).
-        total = Sum(F('count')*F('product__price'), output_field=DecimalField)
-        cart_products = CartProduct.objects.aggregate(
-            total=total
-        )
+        total = Sum(F('count') * F('product__price'), output_field=DecimalField())
+
+        cart_products = CartProduct.objects.filter(owner=self.request.user).values('count').annotate(
+            title=F('product__title'),
+            price=F('product__price'),
+            total=total)
 
         ctx.update({
-            'cart_products': cart_products
+            'cart_products': cart_products,
+            'total': sum([product.get('total') for product in cart_products])
         })
         return ctx
