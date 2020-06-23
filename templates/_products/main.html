@@ -9,8 +9,7 @@
 
             <div class="col-lg-9 col-md-7">
 
-                {# Sale block #}
-                {#                {% include '_products/sale.html' %}#}
+
                 <div class="product__discount">
                     <div class="section-title product__discount__title">
                         <h2>{% trans 'Sale Off' %}</h2>
@@ -21,17 +20,17 @@
                 </div>
 
 
-                    {# Top products Sort by, Products found, View #}
-                    {% include '_products/_products_heading.html' %}
+                {# Top products Sort by, Products found, View #}
+                {% include '_products/_products_heading.html' %}
 
-                    <div class="row">
-                        {% for product in product_list %}
-                            {% include '_products/normal_product.html' with product=product %}
-                        {% endfor %}
-
-                    </div>
-                    {% include '_pagination/main.html' %}
+                <div class="row">
+                    {% for product in product_list %}
+                        {% include '_products/normal_product.html' with product=product %}
+                    {% endfor %}
                 </div>
+
+                {% include '_pagination/main.html' %}
             </div>
         </div>
+    </div>
 </section>

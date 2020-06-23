@@ -1,4 +1,5 @@
 from django import views
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, DecimalField, Value
 from django.db.models import F
 
@@ -43,7 +44,7 @@ class ProductDetails(views.generic.DetailView):
         return ctx
 
 
-class CartProductView(views.generic.TemplateView):
+class CartProductView(LoginRequiredMixin, views.generic.TemplateView):
     """
     Вывод корзины с товарами
     # TODO: нужно переделать

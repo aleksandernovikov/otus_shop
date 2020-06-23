@@ -252,26 +252,35 @@
         }
     });
 
-    /* *
-    * Add product to Cart
-    * */
-    let addToCartButton = $('#add-to-cart')
     const cartEndpoint = '/api/cart-products/'
 
-    addToCartButton.on('click', function (e) {
-        e.preventDefault()
+    function addToCart(productId, qty) {
         $.ajax({
                 url: cartEndpoint,
                 type: 'POST',
                 data: {
-                    product: $(this).data('product-id'),
-                    count: $('#qty-input').val()
+                    product: productId,
+                    count: qty
                 }
             }
         ).done(
             // нужно изменить цифру над корзиной
             // обновить сумму заказа
             console.log('done')
+        )
+    }
+
+    /* *
+    * Add product to Cart
+    * */
+    let addToCartButton = $('#add-to-cart')
+
+
+    addToCartButton.on('click', function (e) {
+        e.preventDefault()
+        addToCart(
+            $(this).data('product-id'),
+            $('#qty-input').val()
         )
     })
 

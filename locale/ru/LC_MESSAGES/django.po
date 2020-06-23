@@ -499,7 +499,7 @@ msgstr ""
 
 #: templates/registration/_login_form.html:12
 msgid "Please login to see this page."
-msgstr ""
+msgstr "Пожалуйста войдите чтобы видеть эту страницу"
 
 #: templates/registration/_login_form.html:34
 msgid "LOGIN"
