@@ -1,5 +1,6 @@
 from django import views
-from django.db.models import Sum, DecimalField
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum, DecimalField, Value
 from django.db.models import F
 
 from .models.cart import CartProduct
@@ -43,21 +44,47 @@ class ProductDetails(views.generic.DetailView):
         return ctx
 
 
-class CartProductView(views.generic.TemplateView):
+class CartProductView(LoginRequiredMixin, views.generic.TemplateView):
+    """
+    Вывод корзины с товарами
+    # TODO: нужно переделать
+    """
     template_name = 'usability/pages/cart.html'
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(**kwargs)
 
-        total = Sum(F('count') * F('product__price'), output_field=DecimalField())
-
-        cart_products = CartProduct.objects.filter(owner=self.request.user).values('count').annotate(
+        cart_products = CartProduct.objects.filter(
+            owner=self.request.user
+        ).select_related(
+            'product'
+        ).values(
+            'count',
+        ).annotate(
+            cart_product_id=F('id'),
+            slug=F('product__slug'),
+            product_id=F('product__id'),
             title=F('product__title'),
             price=F('product__price'),
-            total=total)
+        )
+
+        cart_products_ids = [product.get('product_id') for product in cart_products]
+        products = Product.objects.filter(pk__in=set(cart_products_ids)).prefetch_related('images')
+
+        images_dict = {}
+        for product in products:
+            images_dict[product.id] = product.main_image
+
+        full_cart_products = [{
+            **p,
+            'image': images_dict.get(p.get('product_id')),
+            'total': p.get('count') * p.get('price')
+        } for p in cart_products]
+
+        total = sum([product.get('total') for product in full_cart_products])
 
         ctx.update({
-            'cart_products': cart_products,
-            'total': sum([product.get('total') for product in cart_products])
+            'cart_products': full_cart_products,
+            'total': total
         })
         return ctx

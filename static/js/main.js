@@ -96,7 +96,7 @@
     });
 
 
-    $('.hero__categories__all').on('click', function(){
+    $('.hero__categories__all').on('click', function () {
         $('.hero__categories ul').slideToggle(400);
     });
 
@@ -220,5 +220,88 @@
         }
         $button.parent().find('input').val(newVal);
     });
+
+
+    /*
+    * csrf
+    * */
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var csrftoken = getCookie('csrftoken');
+
+    /*
+    * ajax setup
+    * */
+    $.ajaxSetup({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    });
+
+    const cartEndpoint = '/api/cart-products/'
+
+    function addToCart(productId, qty) {
+        $.ajax({
+                url: cartEndpoint,
+                type: 'POST',
+                data: {
+                    product: productId,
+                    count: qty
+                }
+            }
+        ).done(
+            // нужно изменить цифру над корзиной
+            // обновить сумму заказа
+            console.log('done')
+        )
+    }
+
+    /* *
+    * Add product to Cart
+    * */
+    let addToCartButton = $('#add-to-cart')
+
+
+    addToCartButton.on('click', function (e) {
+        e.preventDefault()
+        addToCart(
+            $(this).data('product-id'),
+            $('#qty-input').val()
+        )
+    })
+
+    /*
+    * Remove from cart
+    * */
+    let removeButton = $('.shoping__cart__item__close span.icon_close')
+    removeButton.on('click', function (e) {
+        const productId = $(this).data('product-id')
+
+        $.ajax({
+            url: cartEndpoint + productId + '/',
+            type: 'DELETE',
+        }).done(function () {
+                $('tr#product-' + productId).hide(100, function () {
+                    $(this).remove()
+                })
+
+            }
+        )
+    })
+
 
 })(jQuery);

@@ -1,12 +1,14 @@
 {% load thumbnail %}
-<tr>
+<tr id="product-{{ product.cart_product_id }}">
     <td class="shoping__cart__item">
-        {% thumbnail product.product.main_image 100x100 crop as thumb %}
+        {% thumbnail product.image 100x100 crop as thumb %}
         <img src="{{ thumb.url }}" alt="">
-        <h5>{{ product.product.title }}</h5>
+        <h5>
+            <a class="cart-btn" href="{% url 'product-details' product.slug %}">{{ product.title }}</a>
+        </h5>
     </td>
     <td class="shoping__cart__price">
-        {{ product.product.price }}
+        {{ product.price }}
     </td>
     <td class="shoping__cart__quantity">
         <div class="quantity">
@@ -16,10 +18,9 @@
         </div>
     </td>
     <td class="shoping__cart__total">
-{#        {% widthratio product.product.price 1 product.count %}#}
-        {#        TODO: сделать нормально #}
+        {{ product.total|floatformat:2 }}
     </td>
     <td class="shoping__cart__item__close">
-        <span class="icon_close"></span>
+        <span class="icon_close" data-product-id="{{ product.cart_product_id }}"></span>
     </td>
 </tr>

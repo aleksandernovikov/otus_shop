@@ -15,6 +15,12 @@ class CartProduct(models.Model):
     def __str__(self):
         return f'{self.product} x {self.count}'
 
+    @staticmethod
+    def cart_products_count(user):
+        if user.is_authenticated:
+            return CartProduct.objects.filter(owner=user).count()
+        return 0
+
     class Meta:
         verbose_name = _('Cart Product')
         verbose_name_plural = _('Cart Products')

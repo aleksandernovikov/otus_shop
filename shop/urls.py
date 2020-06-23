@@ -8,8 +8,7 @@ from shop import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', include('django.contrib.auth.urls')),
-    path('', include('shop_user.urls')),
+    path('accounts/', include('shop_user.urls')),
 
     path('', include('usability.urls')),
     path('shop/', include('products.urls')),
