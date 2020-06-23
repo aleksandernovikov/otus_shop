@@ -10,19 +10,13 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = 'title', 'price',
 
 
-class CartProductSerializer(serializers.ModelSerializer):
-    product = ProductSerializer()
+class ShortCartProductSerializer(serializers.ModelSerializer):
+    owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = CartProduct
-        fields = 'product', 'count'
+        fields = 'owner', 'product', 'count'
 
 
-# class CartSerializer(serializers.ModelSerializer):
-#     owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
-#     products = ProductSerializer(many=True)
-#
-#     class Meta:
-#         model = Cart
-#         read_only_fields = 'owner',
-#         fields = 'owner', 'products',
+class DefaultCartProductSerializer(ShortCartProductSerializer):
+    product = ProductSerializer()
