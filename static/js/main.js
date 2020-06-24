@@ -309,7 +309,6 @@
                 $('tr#product-' + productId).hide(100, function () {
                     $(this).remove()
                 })
-
             }
         )
     })
@@ -322,25 +321,17 @@
                 count: count
             }
         }).done(function (response) {
-            console.log(response)
-            console.log(response.product.price)
-            console.log(response.count)
-            console.log(response.product.price * response.count)
-
-            let productSum = parseFloat(response.product.price) * response.count
-            console.log(productSum)
-
-            return productSum
+            let productTotal = response.product.price * response.count
+            productTotal = productTotal.toFixed(2).toString()
+            productTotal = productTotal.replace(/\./g, ",")
+            $('tr#product-' + productId + '>td.shoping__cart__total').text(productTotal)
         })
     }
 
     let qtyInput = $('.pro-qty input')
     qtyInput.on('paste keyup', function (e) {
         let cartProductId = $(this).data('product-id')
-        console.log(cartProductId)
-
         let count = $(this).val()
-        console.log(count)
         updateCartProduct(cartProductId, count)
     })
 
