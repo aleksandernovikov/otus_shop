@@ -1,1 +1,65 @@
-[{"model": "products.productimage", "pk": 1, "fields": {"product": 6, "image": "products/picca_u6de4bO.jpg", "order": 0}}, {"model": "products.productimage", "pk": 2, "fields": {"product": 5, "image": "products/ogurets_BNYXwCR.jpg", "order": 0}}, {"model": "products.productimage", "pk": 3, "fields": {"product": 4, "image": "products/kapusta_AQ1vBIn.jpeg", "order": 0}}, {"model": "products.productimage", "pk": 4, "fields": {"product": 4, "image": "products/kapusta2_CHQUXfr.jpeg", "order": 0}}, {"model": "products.productimage", "pk": 5, "fields": {"product": 3, "image": "products/perec_rJrBq3m.png", "order": 0}}, {"model": "products.productimage", "pk": 6, "fields": {"product": 2, "image": "products/tikva_zpBdil7.jpg", "order": 0}}, {"model": "products.productimage", "pk": 7, "fields": {"product": 1, "image": "products/baklazhan_fmU8uwg.jpg", "order": 0}}]
+[
+  {
+    "model": "products.productimage",
+    "pk": 1,
+    "fields": {
+      "product": 6,
+      "image": "products/Pizza-1280x960.jpg",
+      "order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 2,
+    "fields": {
+      "product": 5,
+      "image": "products/ogurets.jpg",
+      "order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 3,
+    "fields": {
+      "product": 4,
+      "image": "products/kapusta1.jpg",
+      "order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 4,
+    "fields": {
+      "product": 4,
+      "image": "products/kapusta2.jpg",
+      "order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 5,
+    "fields": {
+      "product": 3,
+      "image": "products/bolg_prerts.jpg",
+      "order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 6,
+    "fields": {
+      "product": 2,
+      "image": "products/tykva.jpeg",
+      "order": 0
+    }
+  },
+  {
+    "model": "products.productimage",
+    "pk": 7,
+    "fields": {
+      "product": 1,
+      "image": "products/baklazhan.jpg",
+      "order": 0
+    }
+  }
+]

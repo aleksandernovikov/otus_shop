@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db.models import F
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
@@ -45,10 +47,10 @@ class CartProductViewSet(viewsets.ModelViewSet):
 
         if already_added.exists():
             already_added.update(count=F('count') + serializer.data.get('count'))
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
-            return super().create(request, *args, **kwargs)
+            super().create(request, *args, **kwargs)
+
+        return self.cart_products_count(request)
 
     @action(methods=['GET'], detail=False, url_path='count', url_name='cart-products-count')
     def cart_products_count(self, request):
@@ -57,9 +59,9 @@ class CartProductViewSet(viewsets.ModelViewSet):
         :param request:
         :return:
         """
-        count = CartProduct.cart_products_count(request.user)
-        return Response({'count': count}, status=status.HTTP_200_OK)
-
-    # def destroy(self, request, *args, **kwargs):
-    #     print('destroy')
-    #     return super().destroy(request, *args, **kwargs)
+        cart = CartProduct.cart_products_minimal(request.user)
+        data = {
+            'count': cart.get('count', 0),
+            'total': cart.get('total', 0)
+        }
+        return Response(data, status=status.HTTP_200_OK)

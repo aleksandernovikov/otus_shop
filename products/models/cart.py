@@ -1,5 +1,8 @@
+from decimal import Decimal
+
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import F, Sum, Count, DecimalField
 from django.utils.translation import gettext_lazy as _
 
 from ..models.product import Product
@@ -16,10 +19,14 @@ class CartProduct(models.Model):
         return f'{self.product} x {self.count}'
 
     @staticmethod
-    def cart_products_count(user):
+    def cart_products_minimal(user):
         if user.is_authenticated:
-            return CartProduct.objects.filter(owner=user).count()
-        return 0
+            return CartProduct.objects.filter(owner=user).select_related('product') \
+                .aggregate(
+                total=Sum(F('product__price') * F('count'), output_field=DecimalField()),
+                count=Count('id')
+            )
+        return CartProduct.objects.none()
 
     class Meta:
         verbose_name = _('Cart Product')

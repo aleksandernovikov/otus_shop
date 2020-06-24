@@ -263,10 +263,14 @@
                     count: qty
                 }
             }
-        ).done(
-            // нужно изменить цифру над корзиной
-            // обновить сумму заказа
-            console.log('done')
+        ).done(function (response) {
+                // нужно изменить цифру над корзиной
+                // обновить сумму заказа
+
+                $('span#cart-products-count').text(response.count)
+                $('span#cart-products-total').text(response.total)
+                console.log('done');
+            }
         )
     }
 

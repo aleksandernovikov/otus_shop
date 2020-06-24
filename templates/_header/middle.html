@@ -49,11 +49,13 @@
                     <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
                     <li>
                         <a href="{% url 'cart' %}">
-                            <i class="fa fa-shopping-bag"></i> <span>{{ products_in_cart }}</span>
+                            <i class="fa fa-shopping-bag"></i> <span
+                                id="cart-products-count">{{ products_in_cart }}</span>
                         </a>
                     </li>
                 </ul>
-                <div class="header__cart__price">{% trans 'order' %}: <span>$150.00</span></div>
+                <div class="header__cart__price">{% trans 'order' %}: <span
+                        id="cart-products-total">{{ cart_total }}</span> {{ site.currency }}</div>
             </div>
         </div>
     </div>
