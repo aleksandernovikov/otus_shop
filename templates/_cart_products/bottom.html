@@ -8,25 +8,27 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="shoping__continue">
-            <div class="shoping__discount">
-                <h5>{% trans 'Discount Codes' %}</h5>
-                <form action="#">
-                    <input type="text" placeholder="{% trans 'Enter your coupon code' %}">
-                    <button type="submit" class="site-btn">{% trans 'APPLY COUPON' %}</button>
-                </form>
+    {% if cart_products %}
+        <div class="col-lg-6">
+            <div class="shoping__continue">
+                <div class="shoping__discount">
+                    <h5>{% trans 'Discount Codes' %}</h5>
+                    <form action="#">
+                        <input type="text" placeholder="{% trans 'Enter your coupon code' %}">
+                        <button type="submit" class="site-btn">{% trans 'APPLY COUPON' %}</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="shoping__checkout">
-            <h5>{% trans 'Cart Total' %}</h5>
-            <ul>
-                <li>{% trans 'Subtotal' %} <span>$454.98</span></li>
-                <li>{% trans 'Total' %} <span>$454.98</span></li>
-            </ul>
-            <a href="{% url 'checkout' %}" class="primary-btn">{% trans 'PROCEED TO CHECKOUT' %}</a>
+        <div class="col-lg-6">
+            <div class="shoping__checkout">
+                <h5>{% trans 'Cart Total' %}</h5>
+                <ul>
+                    <li>{% trans 'Subtotal' %} <span>$454.98</span></li>
+                    <li>{% trans 'Total' %} <span>$454.98</span></li>
+                </ul>
+                <a href="{% url 'checkout' %}" class="primary-btn">{% trans 'PROCEED TO CHECKOUT' %}</a>
+            </div>
         </div>
-    </div>
+    {% endif %}
 </div>

@@ -21,11 +21,13 @@ class CartProduct(models.Model):
     @staticmethod
     def cart_products_minimal(user):
         if user.is_authenticated:
-            return CartProduct.objects.filter(owner=user).select_related('product') \
+            result = CartProduct.objects.filter(owner=user).select_related('product') \
                 .aggregate(
                 total=Sum(F('product__price') * F('count'), output_field=DecimalField()),
                 count=Count('id')
             )
+            result['total'] = result.get('total') if result['total'] else 0
+            return result
         return CartProduct.objects.none()
 
     class Meta:

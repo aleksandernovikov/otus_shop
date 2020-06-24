@@ -1,6 +1,11 @@
+{% load i18n %}
 <section class="shoping-cart spad">
     <div class="container">
-        {% include '_cart_products/table.html' %}
+        {% if cart_products %}
+            {% include '_cart_products/table.html' %}
+        {% else %}
+            <h5 class="spad text-center">{% trans 'No products' %}</h5>
+        {% endif %}
         {% include '_cart_products/bottom.html' %}
     </div>
 </section>

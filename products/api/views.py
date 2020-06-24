@@ -50,18 +50,21 @@ class CartProductViewSet(viewsets.ModelViewSet):
         else:
             super().create(request, *args, **kwargs)
 
-        return self.cart_products_count(request)
+        return self.cart_products_count(request, set_status=status.HTTP_201_CREATED)
 
     @action(methods=['GET'], detail=False, url_path='count', url_name='cart-products-count')
-    def cart_products_count(self, request):
+    def cart_products_count(self, request, set_status=status.HTTP_200_OK):
         """
         Количество продуктов в корзине
-        :param request:
-        :return:
         """
         cart = CartProduct.cart_products_minimal(request.user)
         data = {
             'count': cart.get('count', 0),
             'total': cart.get('total', 0)
         }
-        return Response(data, status=status.HTTP_200_OK)
+        return Response(data, status=set_status)
+
+    def destroy(self, request, *args, **kwargs):
+        super().destroy(request, *args, **kwargs)
+        # with 204 status code - no data
+        return self.cart_products_count(request)

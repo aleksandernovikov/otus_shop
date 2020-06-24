@@ -254,6 +254,11 @@
 
     const cartEndpoint = '/api/cart-products/'
 
+    function update_cart_information(count, total) {
+        $('span#cart-products-count').text(count)
+        $('span#cart-products-total').text(total)
+    }
+
     function addToCart(productId, qty) {
         $.ajax({
                 url: cartEndpoint,
@@ -264,11 +269,7 @@
                 }
             }
         ).done(function (response) {
-                // нужно изменить цифру над корзиной
-                // обновить сумму заказа
-
-                $('span#cart-products-count').text(response.count)
-                $('span#cart-products-total').text(response.total)
+                update_cart_information(response.count, response.total)
                 console.log('done');
             }
         )
@@ -277,15 +278,20 @@
     /* *
     * Add product to Cart
     * */
+    // from product details page
     let addToCartButton = $('#add-to-cart')
-
-
     addToCartButton.on('click', function (e) {
         e.preventDefault()
         addToCart(
             $(this).data('product-id'),
             $('#qty-input').val()
         )
+    })
+    // from products list page
+    let addToCartLink = $('.add-to-cart')
+    addToCartLink.on('click', function (e) {
+        e.preventDefault()
+        addToCart($(this).data('product-id'), 1)
     })
 
     /*
@@ -298,7 +304,8 @@
         $.ajax({
             url: cartEndpoint + productId + '/',
             type: 'DELETE',
-        }).done(function () {
+        }).done(function (response) {
+                update_cart_information(response.count, response.total)
                 $('tr#product-' + productId).hide(100, function () {
                     $(this).remove()
                 })
