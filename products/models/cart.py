@@ -20,6 +20,7 @@ class CartProduct(models.Model):
 
     @staticmethod
     def cart_products_minimal(user):
+        result = {'total': 0, 'count': 0}
         if user.is_authenticated:
             result = CartProduct.objects.filter(owner=user).select_related('product') \
                 .aggregate(
@@ -28,7 +29,7 @@ class CartProduct(models.Model):
             )
             result['total'] = result.get('total') if result['total'] else 0
             return result
-        return CartProduct.objects.none()
+        return result
 
     class Meta:
         verbose_name = _('Cart Product')
