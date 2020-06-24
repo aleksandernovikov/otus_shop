@@ -221,7 +221,7 @@
         $button.parent().find('input').val(newVal);
     });
 
-
+    // my code start
     /*
     * csrf
     * */
@@ -254,7 +254,7 @@
 
     const cartEndpoint = '/api/cart-products/'
 
-    function update_cart_information(count, total) {
+    function updateCartInformation(count, total) {
         $('span#cart-products-count').text(count)
         $('span#cart-products-total').text(total)
     }
@@ -269,7 +269,7 @@
                 }
             }
         ).done(function (response) {
-                update_cart_information(response.count, response.total)
+                updateCartInformation(response.count, response.total)
                 console.log('done');
             }
         )
@@ -305,7 +305,7 @@
             url: cartEndpoint + productId + '/',
             type: 'DELETE',
         }).done(function (response) {
-                update_cart_information(response.count, response.total)
+                updateCartInformation(response.count, response.total)
                 $('tr#product-' + productId).hide(100, function () {
                     $(this).remove()
                 })
@@ -314,5 +314,34 @@
         )
     })
 
+    function updateCartProduct(productId, count) {
+        $.ajax({
+            url: cartEndpoint + productId + '/',
+            type: 'PATCH',
+            data: {
+                count: count
+            }
+        }).done(function (response) {
+            console.log(response)
+            console.log(response.product.price)
+            console.log(response.count)
+            console.log(response.product.price * response.count)
+
+            let productSum = parseFloat(response.product.price) * response.count
+            console.log(productSum)
+
+            return productSum
+        })
+    }
+
+    let qtyInput = $('.pro-qty input')
+    qtyInput.on('paste keyup', function (e) {
+        let cartProductId = $(this).data('product-id')
+        console.log(cartProductId)
+
+        let count = $(this).val()
+        console.log(count)
+        updateCartProduct(cartProductId, count)
+    })
 
 })(jQuery);

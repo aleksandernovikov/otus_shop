@@ -15,7 +15,7 @@ class ShortCartProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartProduct
-        fields = 'owner', 'product', 'count'
+        fields = 'owner', 'product', 'id', 'count'
 
 
 class DefaultCartProductSerializer(ShortCartProductSerializer):
