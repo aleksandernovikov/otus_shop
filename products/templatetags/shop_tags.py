@@ -18,7 +18,7 @@ def shop_categories(place):
 
 @register.inclusion_tag('tags/sale_products.html')
 def sale_block(max_count=6):
-    products = Product.objects.filter(sale_price__isnull=False)[:max_count]
+    products = Product.objects.filter(strikeout_price__isnull=False)[:max_count]
 
     return {
         'sale_products': products

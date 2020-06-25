@@ -4,12 +4,10 @@
         <div class="row">
 
             <div class="col-lg-3 col-md-5">
-                {% include '_products/sidebar.html' %}
+                {% include 'products/_products/sidebar.html' %}
             </div>
 
             <div class="col-lg-9 col-md-7">
-
-
                 <div class="product__discount">
                     <div class="section-title product__discount__title">
                         <h2>{% trans 'Sale Off' %}</h2>
@@ -21,11 +19,11 @@
 
 
                 {# Top products Sort by, Products found, View #}
-                {% include '_products/_products_heading.html' %}
+                {% include 'products/_products/_products_heading.html' %}
 
                 <div class="row">
                     {% for product in product_list %}
-                        {% include '_products/normal_product.html' with product=product %}
+                        {% include 'products/_products/normal_product.html' with product=product %}
                     {% endfor %}
                 </div>
 

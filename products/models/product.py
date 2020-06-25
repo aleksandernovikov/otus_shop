@@ -17,12 +17,15 @@ class Product(models.Model):
 
     description = models.TextField(blank=True)
 
-    price = models.DecimalField(decimal_places=2, max_digits=5)
-    sale_price = models.DecimalField(_('Sale price'),
-                                     decimal_places=2, max_digits=5,
-                                     blank=True,
-                                     null=True,
-                                     help_text='Discount price')
+    price = models.DecimalField(_('Selling price'), decimal_places=2, max_digits=5,
+                                help_text=_('Price at which the product will be sold'))
+
+    strikeout_price = models.DecimalField(_('Strikeout price'),
+                                          decimal_places=2, max_digits=5,
+                                          blank=True,
+                                          null=True,
+                                          help_text=_('Crossed/old product price')
+                                          )
 
     images = models.ManyToManyField(ProductImage, related_name='products')
 
@@ -33,7 +36,11 @@ class Product(models.Model):
 
     @property
     def discount_percent(self):
-        percent = self.sale_price / self.price
+        """
+        Процент скидки
+        :return:
+        """
+        percent = self.price / self.strikeout_price
         return round((1 - percent) * 100)
 
     def __str__(self):
@@ -42,6 +49,12 @@ class Product(models.Model):
         return f'{self.title} {m} {self.price} {settings.SITE_DATA.get("currency")}'
 
     def save(self, *args, **kwargs):
+        """
+        Автогенерация слага
+        :param args:
+        :param kwargs:
+        :return:
+        """
         if not self.pk and not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)

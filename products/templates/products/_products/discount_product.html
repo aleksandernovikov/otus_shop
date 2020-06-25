@@ -20,7 +20,7 @@
             <h5>
                 <a href="{% url 'product-details' product.slug %}">{{ product.title }}</a>
             </h5>
-            <div class="product__item__price">{{ product.sale_price }} <span>{{ product.price }}</span></div>
+            <div class="product__item__price">{{ product.price }} <span>{{ product.strikeout_price }}</span></div>
         </div>
     </div>
 </div>

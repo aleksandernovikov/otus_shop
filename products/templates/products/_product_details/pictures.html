@@ -1,18 +1,15 @@
-{% load static thumbnail %}
+{% load thumbnail %}
 <div class="product__details__pic">
     <div class="product__details__pic__item">
-        <img class="product__details__pic__item--large"
-                {% thumbnail product.main_image 555x575 crop as main_image_preview %}
-             src="{{ main_image_preview.url }}" alt="">
+        {% thumbnail product.main_image 555x575 crop as main_image_preview %}
+        <img class="product__details__pic__item--large" src="{{ main_image_preview.url }}" alt="">
     </div>
-
     {% if product_images|length > 1 %}
         <div class="product__details__pic__slider owl-carousel">
             {% for image in product_images %}
                 {% thumbnail image.image 555x575 crop as image_preview %}
                 {% thumbnail image.image 120x120 crop as image_thumb %}
-                <img data-imgbigurl="{{ image_preview.url }}"
-                     src="{{ image_thumb.url }}" alt="">
+                <img data-imgbigurl="{{ image_preview.url }}" src="{{ image_thumb.url }}" alt="">
             {% endfor %}
         </div>
     {% endif %}

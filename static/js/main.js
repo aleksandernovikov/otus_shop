@@ -259,18 +259,14 @@
         $('span#cart-products-total').text(total)
     }
 
-    function addToCart(productId, qty) {
-        $.ajax({
+    function addToCartRequest(productId, qty) {
+        return $.ajax({
                 url: cartEndpoint,
                 type: 'POST',
                 data: {
                     product: productId,
                     count: qty
                 }
-            }
-        ).done(function (response) {
-                updateCartInformation(response.count, response.total)
-                console.log('done');
             }
         )
     }
@@ -282,29 +278,42 @@
     let addToCartButton = $('#add-to-cart')
     addToCartButton.on('click', function (e) {
         e.preventDefault()
-        addToCart(
+        addToCartRequest(
             $(this).data('product-id'),
             $('#qty-input').val()
+        ).done(function (response) {
+                updateCartInformation(response.count, response.total)
+            }
         )
     })
     // from products list page
     let addToCartLink = $('.add-to-cart')
     addToCartLink.on('click', function (e) {
         e.preventDefault()
-        addToCart($(this).data('product-id'), 1)
+        addToCartRequest(
+            $(this).data('product-id'), 1
+        ).done(function (response) {
+                updateCartInformation(response.count, response.total)
+            }
+        )
     })
 
     /*
     * Remove from cart
     * */
     let removeButton = $('.shoping__cart__item__close span.icon_close')
+
+    function removeCartProductRequest(productId) {
+        return $.ajax({
+            url: cartEndpoint + productId + '/',
+            type: 'DELETE',
+        })
+    }
+
     removeButton.on('click', function (e) {
         const productId = $(this).data('product-id')
 
-        $.ajax({
-            url: cartEndpoint + productId + '/',
-            type: 'DELETE',
-        }).done(function (response) {
+        removeCartProductRequest(productId).done(function (response) {
                 updateCartInformation(response.count, response.total)
                 $('tr#product-' + productId).hide(100, function () {
                     $(this).remove()
@@ -313,26 +322,34 @@
         )
     })
 
-    function updateCartProduct(productId, count) {
-        $.ajax({
+    /*
+    * Update product cart count
+    * */
+    function updateCartProductRequest(productId, count) {
+        return $.ajax({
             url: cartEndpoint + productId + '/',
             type: 'PATCH',
             data: {
                 count: count
             }
-        }).done(function (response) {
+        })
+    }
+
+    /*
+    * Recalculate cart total
+    * */
+    let qtyInput = $('.pro-qty input')
+    qtyInput.on('paste keyup', function (e) {
+
+        let cartProductId = $(this).data('product-id')
+        let count = $(this).val()
+
+        updateCartProductRequest(cartProductId, count).done(function (response) {
             let productTotal = response.product.price * response.count
             productTotal = productTotal.toFixed(2).toString()
             productTotal = productTotal.replace(/\./g, ",")
             $('tr#product-' + productId + '>td.shoping__cart__total').text(productTotal)
         })
-    }
-
-    let qtyInput = $('.pro-qty input')
-    qtyInput.on('paste keyup', function (e) {
-        let cartProductId = $(this).data('product-id')
-        let count = $(this).val()
-        updateCartProduct(cartProductId, count)
     })
 
 })(jQuery);

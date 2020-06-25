@@ -26,12 +26,7 @@
                 <a href="{% url 'product-details' product.slug %}">{{ product.title }}</a>
             </h6>
             <h5>
-                {% if product.sale_price %}
-                    {{ product.sale_price }}
-                {% else %}
-                    {{ product.price }}
-                {% endif %}
-                руб.
+                {{ product.price }} {{ site.currency }}
             </h5>
         </div>
     </div>
