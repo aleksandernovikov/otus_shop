@@ -125,6 +125,13 @@ LOCALE_PATHS = (
     'locale',
 )
 
+# https://docs.djangoproject.com/en/3.0/ref/settings/#admins
+# for mail_admins()
+# ADMINS = [('Super Admin', 'admin@otus-shop.com')]
+
+# https://docs.djangoproject.com/en/3.0/topics/email/#console-backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -153,4 +160,21 @@ SITE_DATA = {
 
     'currency': 'руб.',
     'address': '60-49 Road 11378 New York'
+}
+
+# db queries logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        },
+    },
 }

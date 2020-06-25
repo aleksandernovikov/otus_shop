@@ -5,7 +5,7 @@ from easy_thumbnails.fields import ThumbnailerImageField
 
 
 class ShopUser(AbstractUser):
-    avatar = ThumbnailerImageField(upload_to='avatars', blank=True)
+    avatar = ThumbnailerImageField(_('Avatar'), upload_to='avatars', blank=True)
     short_description = models.CharField(_('Short Description'), max_length=30, blank=True)
 
     middle_name = models.CharField(_('Middle Name'), max_length=100, blank=True)

@@ -252,6 +252,11 @@
         }
     });
 
+    function ajaxErrorHandler(xhr, status, error) {
+        if (xhr.status === 403)
+            alert('Пожалуйста авторизуйтесь')
+    }
+
     const cartEndpoint = '/api/cart-products/'
 
     function updateCartInformation(count, total) {
@@ -284,8 +289,9 @@
         ).done(function (response) {
                 updateCartInformation(response.count, response.total)
             }
-        )
+        ).fail(ajaxErrorHandler)
     })
+
     // from products list page
     let addToCartLink = $('.add-to-cart')
     addToCartLink.on('click', function (e) {
@@ -295,7 +301,7 @@
         ).done(function (response) {
                 updateCartInformation(response.count, response.total)
             }
-        )
+        ).fail(ajaxErrorHandler)
     })
 
     /*
@@ -314,12 +320,11 @@
         const productId = $(this).data('product-id')
 
         removeCartProductRequest(productId).done(function (response) {
-                updateCartInformation(response.count, response.total)
-                $('tr#product-' + productId).hide(100, function () {
-                    $(this).remove()
-                })
-            }
-        )
+            updateCartInformation(response.count, response.total)
+            $('tr#product-' + productId).hide(100, function () {
+                $(this).remove()
+            })
+        }).fail(ajaxErrorHandler)
     })
 
     /*
@@ -349,7 +354,7 @@
             productTotal = productTotal.toFixed(2).toString()
             productTotal = productTotal.replace(/\./g, ",")
             $('tr#product-' + productId + '>td.shoping__cart__total').text(productTotal)
-        })
+        }).fail(ajaxErrorHandler)
     })
 
 })(jQuery);
