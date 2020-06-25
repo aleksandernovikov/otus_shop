@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    {{ post }}
+{% endblock %}
+
 {% block content %}
     {% include '_hero/main.html' with closed=True %}
     {% include 'blog/_blog_post_details/main.html' %}

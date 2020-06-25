@@ -12,14 +12,8 @@ class ShopUserProfile(views.generic.UpdateView):
     form_class = UserProfileForm
     success_url = reverse_lazy('user-profile')
 
-    def get_queryset(self):
-        user_id = self.request.user.id
-        user = User.objects.get(pk=user_id)
-        return user
-
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+    def get_object(self, queryset=None):
+        return User.objects.get(pk=self.request.user.id)
 
 
 class ShopUserSignUp(views.generic.FormView):

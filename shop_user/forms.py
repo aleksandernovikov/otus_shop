@@ -14,10 +14,9 @@ class UserSignUpForm(UserCreationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('avatar', 'username', 'first_name', 'middle_name', 'last_name', 'short_description')
+        fields = ('avatar', 'first_name', 'middle_name', 'last_name', 'short_description')
         widgets = {
             'avatar': forms.FileInput(attrs={'class': 'form-control'}),
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'middle_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),

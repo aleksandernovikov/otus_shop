@@ -1,5 +1,6 @@
 {% load static i18n thumbnail %}
 
+
 <div class="blog__details__text">
     {% thumbnail post.image 750x750 crop as main_image %}
     <img src="{{ main_image.url }}" alt="">
@@ -10,7 +11,12 @@
         <div class="col-lg-6">
             <div class="blog__details__author">
                 <div class="blog__details__author__pic">
-                    <img src="{% static 'img/blog/details/details-author.jpg' %}" alt="">
+                    {% if user.avatar %}
+                        {% thumbnail user.avatar 92x92 crop as ava %}
+                        <img src="{{ ava.url }}" alt="">
+                    {% else %}
+                        <img src="{% static 'img/blog/details/details-author.jpg' %}" alt="">
+                    {% endif %}
                 </div>
                 <div class="blog__details__author__text">
                     <h6>{{ post.author }}</h6>

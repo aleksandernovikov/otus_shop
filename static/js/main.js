@@ -218,7 +218,17 @@
                 newVal = 0;
             }
         }
-        $button.parent().find('input').val(newVal);
+        let input = $button.parent().find('input')
+        input.val(newVal);
+        let cartProductId = input.data('product-id')
+
+        updateCartProductRequest(cartProductId, newVal).done(function (response) {
+            let productTotal = response.product.price * response.count
+            productTotal = productTotal.toFixed(2).toString()
+            productTotal = productTotal.replace(/\./g, ",")
+            $('tr#product-' + cartProductId + '>td.shoping__cart__total').text(productTotal)
+        }).fail(ajaxErrorHandler)
+
     });
 
     // my code start
