@@ -19,7 +19,13 @@ class PostAdminForm(forms.ModelForm):
 class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
     prepopulated_fields = {'slug': ('title',)}
-    autocomplete_fields = 'category',
+    autocomplete_fields = 'author',
+    radio_fields = {"category": admin.HORIZONTAL}
+    fields = (
+        'author', 'category',
+        ('title', 'slug'),
+        'image', 'text'
+    )
 
 
 @admin.register(PostCategory)

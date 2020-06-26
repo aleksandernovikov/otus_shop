@@ -45,10 +45,6 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.category.title} : {self.title}'
 
-    @property
-    def comments_count(self):
-        return 5
-
     @cached_property
     def short_text(self):
         import re

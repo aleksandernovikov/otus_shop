@@ -1,6 +1,5 @@
 from django import views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Sum, DecimalField, Value
 from django.db.models import F
 
 from .models.cart import CartProduct
@@ -8,18 +7,43 @@ from .models.product_category import ProductCategory
 from .models.product import Product
 
 
-class ShopRootListView(views.generic.ListView):
+class ShopMixin:
     model = Product
     template_name = 'usability/pages/shop.html'
-
-
-class ShopCategoryListView(views.generic.ListView):
-    model = Product
-    template_name = 'usability/pages/shop.html'
+    paginate_by = 6
+    allowed_sort_params = ('price', '-price')
 
     def get_queryset(self):
+        """
+            for sorting
+        """
+        sort_param = self.request.GET.get('sort')
+        queryset = self.model.objects.all()
+
+        if sort_param in self.allowed_sort_params:
+            return queryset.order_by(sort_param)
+
+        return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+        sort_param = self.request.GET.get('sort')
+        if sort_param in self.allowed_sort_params:
+            ctx.update({
+                'current_sorting': sort_param
+            })
+        return ctx
+
+
+class ShopRootListView(ShopMixin, views.generic.ListView):
+    def get_queryset(self):
+        return super().get_queryset().prefetch_related('product_images')
+
+
+class ShopCategoryListView(ShopMixin, views.generic.ListView):
+    def get_queryset(self):
         category_slug = self.kwargs.get('slug')
-        return self.model.objects.filter(category__slug=category_slug)
+        return super().get_queryset().filter(category__slug=category_slug).prefetch_related('product_images')
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)

@@ -8,7 +8,7 @@
         </h5>
     </td>
     <td class="shoping__cart__price">
-        {{ product.price }}
+        {{ product.price }} {{ site.currency }}
     </td>
     <td class="shoping__cart__quantity">
         <div class="quantity">
@@ -18,7 +18,7 @@
         </div>
     </td>
     <td class="shoping__cart__total">
-        {{ product.total|floatformat:2 }}
+        <span>{{ product.total|floatformat:2 }}</span> {{ site.currency }}
     </td>
     <td class="shoping__cart__item__close">
         <span class="icon_close" data-product-id="{{ product.cart_product_id }}"></span>

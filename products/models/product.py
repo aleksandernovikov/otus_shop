@@ -29,6 +29,8 @@ class Product(models.Model):
 
     images = models.ManyToManyField(ProductImage, related_name='products')
 
+    sort_order = models.PositiveSmallIntegerField(_('Ordering'), default=0)
+
     @cached_property
     def main_image(self):
         i = self.product_images.first()
@@ -62,3 +64,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
+        ordering = ('sort_order',)

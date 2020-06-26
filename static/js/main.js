@@ -223,10 +223,8 @@
         let cartProductId = input.data('product-id')
 
         updateCartProductRequest(cartProductId, newVal).done(function (response) {
-            let productTotal = response.product.price * response.count
-            productTotal = productTotal.toFixed(2).toString()
-            productTotal = productTotal.replace(/\./g, ",")
-            $('tr#product-' + cartProductId + '>td.shoping__cart__total').text(productTotal)
+            updateProductTotalPrice(cartProductId, response)
+            updateCartTotal()
         }).fail(ajaxErrorHandler)
 
     });
@@ -269,11 +267,12 @@
 
     const cartEndpoint = '/api/cart-products/'
 
-    function updateCartInformation(count, total) {
+    function updateTopCartInformation(count, total) {
         $('span#cart-products-count').text(count)
         $('span#cart-products-total').text(total)
     }
 
+    // запрос добавления товара в корзину
     function addToCartRequest(productId, qty) {
         return $.ajax({
                 url: cartEndpoint,
@@ -286,9 +285,30 @@
         )
     }
 
+    // запрос получения информации о корзине
+    function getCartInformationRequest() {
+        return $.ajax({
+                url: cartEndpoint + 'count/',
+                type: 'GET',
+            }
+        )
+    }
+
+    function updateCartTotal() {
+        getCartInformationRequest().done(function (response) {
+            if (response) {
+                // $('#cart-subtotal').text(response.total)
+                $('#cart-total').text(
+                    formatToDecimal(response.total)
+                )
+            }
+        })
+    }
+
     /* *
     * Add product to Cart
     * */
+
     // from product details page
     let addToCartButton = $('#add-to-cart')
     addToCartButton.on('click', function (e) {
@@ -297,7 +317,7 @@
             $(this).data('product-id'),
             $('#qty-input').val()
         ).done(function (response) {
-                updateCartInformation(response.count, response.total)
+                updateTopCartInformation(response.count, response.total)
             }
         ).fail(ajaxErrorHandler)
     })
@@ -309,7 +329,7 @@
         addToCartRequest(
             $(this).data('product-id'), 1
         ).done(function (response) {
-                updateCartInformation(response.count, response.total)
+                updateTopCartInformation(response.count, response.total)
             }
         ).fail(ajaxErrorHandler)
     })
@@ -330,10 +350,11 @@
         const productId = $(this).data('product-id')
 
         removeCartProductRequest(productId).done(function (response) {
-            updateCartInformation(response.count, response.total)
+            updateTopCartInformation(response.count, response.total)
             $('tr#product-' + productId).hide(100, function () {
                 $(this).remove()
             })
+            updateCartTotal()
         }).fail(ajaxErrorHandler)
     })
 
@@ -350,21 +371,39 @@
         })
     }
 
+    function formatToDecimal(digit) {
+        return digit.toFixed(2).toString().replace(/\./g, ",")
+    }
+
     /*
-    * Recalculate cart total
+    * Recalculate cart product total
     * */
+
+    function updateProductTotalPrice(productId, data) {
+        if (data && data.product) {
+            let productTotal = data.product.price * data.count
+            productTotal = formatToDecimal(productTotal)
+            $('tr#product-' + productId + '>td.shoping__cart__total > span').text(productTotal)
+        }
+    }
+
     let qtyInput = $('.pro-qty input')
     qtyInput.on('paste keyup', function (e) {
-
         let cartProductId = $(this).data('product-id')
         let count = $(this).val()
 
         updateCartProductRequest(cartProductId, count).done(function (response) {
-            let productTotal = response.product.price * response.count
-            productTotal = productTotal.toFixed(2).toString()
-            productTotal = productTotal.replace(/\./g, ",")
-            $('tr#product-' + productId + '>td.shoping__cart__total').text(productTotal)
+            updateProductTotalPrice(cartProductId, response)
+            updateCartTotal()
         }).fail(ajaxErrorHandler)
+    })
+
+    let sortProducts = $('select#products-sort')
+    sortProducts.change(function (e) {
+        // https://developer.mozilla.org/en-US/docs/Web/API/URL
+        const url = new URL(window.location.href)
+        url.searchParams.set('sort', $(this).val())
+        document.location.href = url
     })
 
 })(jQuery);

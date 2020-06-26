@@ -8,6 +8,9 @@ User = get_user_model()
 
 
 class ShopUserProfile(views.generic.UpdateView):
+    """
+    Профиль пользователя
+    """
     template_name = 'shop_user/profile.html'
     form_class = UserProfileForm
     success_url = reverse_lazy('user-profile')
@@ -17,6 +20,9 @@ class ShopUserProfile(views.generic.UpdateView):
 
 
 class ShopUserSignUp(views.generic.FormView):
+    """
+    Регистрация пользователя
+    """
     template_name = 'shop_user/signup.html'
     form_class = UserSignUpForm
     success_url = reverse_lazy('login')

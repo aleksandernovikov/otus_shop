@@ -20,7 +20,7 @@ def related_posts(context, title):
     Похожие публикации
     """
     post_slug = context.request.resolver_match.kwargs.get('slug')
-    posts = Post.objects.exclude(slug=post_slug)
+    posts = Post.objects.exclude(slug=post_slug).values('publication_date', 'title', 'slug', 'image', 'text')
 
     return {
         'title': title,

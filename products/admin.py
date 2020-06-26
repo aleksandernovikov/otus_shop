@@ -26,9 +26,14 @@ class ProductAdminForm(forms.ModelForm):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
+    fields = (
+        'category',
+        ('title', 'slug'),
+        'description',
+        ('price', 'strikeout_price')
+    )
     prepopulated_fields = {'slug': ('title', 'category')}
     inlines = ProductImageAdminInline,
-    exclude = 'images',
     autocomplete_fields = 'category',
 
 
@@ -36,6 +41,11 @@ class ProductAdmin(admin.ModelAdmin):
 class ProductCategoryAdmin(TreeAdmin):
     form = movenodeform_factory(ProductCategory)
     prepopulated_fields = {'slug': ('title',)}
+    fields = (
+        ('title', 'slug'),
+        'description', 'image',
+        ('show_in_top', 'show_in_sidebar'),
+        ('_ref_node_id', '_position'))
     ordering = 'title',
     search_fields = 'title', 'slug'
 
@@ -44,3 +54,4 @@ class ProductCategoryAdmin(TreeAdmin):
 class CartProductAdmin(admin.ModelAdmin):
     list_filter = 'owner',
     ordering = 'owner',
+    readonly_fields = ('owner', 'product', 'count')

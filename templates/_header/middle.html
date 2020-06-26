@@ -17,27 +17,10 @@
                     <li>
                         <a href="{% url 'shop' %}">{% trans 'Shop' %}</a>
                     </li>
-                    {#                    <li><a href="#">Pages</a>#}
-                    {#                        <ul class="header__menu__dropdown">#}
-                    {#                            <li>#}
-                    {#                                <a href="./shop-details.html">Shop Details</a>#}
-                    {#                            </li>#}
-                    {#                            <li>#}
-                    {#                                <a href="./shoping-cart.html">Shoping Cart</a>#}
-                    {#                            </li>#}
-                    {#                            <li>#}
-                    {#                                <a href="./checkout.html">Check Out</a>#}
-                    {#                            </li>#}
-                    {#                            <li>#}
-                    {#                                <a href="./blog-details.html">Blog Details</a>#}
-                    {#                            </li>#}
-                    {#                        </ul>#}
-                    {#                    </li>#}
                     <li>
                         <a href="{% url 'blog' %}">{% trans 'Blog' %}</a>
                     </li>
                     <li>
-                        {#                         class="active"#}
                         <a href="{% url 'contacts' %}">{% trans 'Contact' %}</a>
                     </li>
                 </ul>
@@ -55,7 +38,7 @@
                     </li>
                 </ul>
                 <div class="header__cart__price">{% trans 'order' %}: <span
-                        id="cart-products-total">{{ cart_total }}</span> {{ site.currency }}</div>
+                        id="cart-products-total">{{ cart_total|floatformat:2 }}</span> {{ site.currency }}</div>
             </div>
         </div>
     </div>
