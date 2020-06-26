@@ -2,7 +2,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from products.views import CartProductView
+from products.views import CartProductView, OrderCreateView
 from shop import settings
 
 urlpatterns = [
@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('api/', include('products.api.urls')),
     path('cart/', CartProductView.as_view(), name='cart'),
+    path('checkout/', OrderCreateView.as_view(), name='checkout'),
 ]
 
 if settings.DEBUG:

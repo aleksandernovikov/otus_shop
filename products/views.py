@@ -2,7 +2,9 @@ from django import views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import F
 
+from .forms import OrderForm
 from .models.cart import CartProduct
+from .models.order import Order
 from .models.product_category import ProductCategory
 from .models.product import Product
 
@@ -54,7 +56,7 @@ class ShopCategoryListView(ShopMixin, views.generic.ListView):
         return ctx
 
 
-class ProductDetails(views.generic.DetailView):
+class ProductDetailsView(views.generic.DetailView):
     model = Product
     template_name = 'usability/pages/product_details.html'
 
@@ -110,5 +112,23 @@ class CartProductView(LoginRequiredMixin, views.generic.TemplateView):
         ctx.update({
             'cart_products': full_cart_products,
             'total': total
+        })
+        return ctx
+
+
+class OrderCreateView(views.generic.CreateView):
+    model = Order
+    template_name = 'usability/pages/checkout.html'
+    form_class = OrderForm
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        cart_products = CartProduct.objects.filter(
+            owner=self.request.user
+        ).select_related(
+            'product'
+        )
+        ctx.update({
+            'cart_products': cart_products
         })
         return ctx

@@ -222,6 +222,7 @@
         input.val(newVal);
         let cartProductId = input.data('product-id')
 
+        // my
         updateCartProductRequest(cartProductId, newVal).done(function (response) {
             updateProductTotalPrice(cartProductId, response)
             updateCartTotal()

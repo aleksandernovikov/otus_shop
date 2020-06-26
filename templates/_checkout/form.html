@@ -2,55 +2,64 @@
 <div class="checkout__form">
     <h4>{% trans 'Billing Details' %}</h4>
     <form action="#">
+        {% csrf_token %}
         <div class="row">
             <div class="col-lg-8 col-md-6">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout__input">
-                            <p>{% trans 'Fist Name' %}<span>*</span></p>
-                            <input type="text"{% if user.first_name %} value="{{ user.first_name }}{% endif %}">
+                            <p>
+                                {{ form.first_name.label_tag }}<span>*</span>
+                            </p>
+                            {{ form.first_name }}
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="checkout__input">
-                            <p>{% trans 'Last Name' %}<span>*</span></p>
-                            <input type="text">
+                            <p>
+                                {{ form.last_name.label_tag }}<span>*</span>
+                            </p>
+                            {{ form.last_name }}
                         </div>
                     </div>
                 </div>
                 <div class="checkout__input">
-                    <p>{% trans 'Country/State' %}<span>*</span></p>
-                    <input type="text">
+                    <p>{{ form.state.label_tag }}<span>*</span></p>
+                    {{ form.state }}
                 </div>
 
                 <div class="checkout__input">
-                    <p>{% trans 'Town/City' %}<span>*</span></p>
-                    <input type="text">
+                    <p>{{ form.city.label_tag }}<span>*</span></p>
+                    {{ form.city }}
                 </div>
                 <div class="checkout__input">
-                    <p>{% trans 'Address' %}<span>*</span></p>
-                    <input type="text" placeholder="{% trans 'Street Address' %}" class="checkout__input__add">
-                    <input type="text" placeholder="{% trans 'Apartment, suite, unite ect (optinal)' %}">
+                    <p>{{ form.street.label_tag }}<span>*</span></p>
+                    {{ form.street }}
+
+                </div>
+
+                <div class="checkout__input">
+                    <p>{{ form.building.label_tag }}<span>*</span></p>
+                    {{ form.building }}
                 </div>
 
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout__input">
-                            <p>{% trans 'Phone' %}<span>*</span></p>
-                            <input type="text">
+                            <p>{{ form.phone.label_tag }}<span>*</span></p>
+                            {{ form.phone }}
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="checkout__input">
-                            <p>{% trans 'Postcode / ZIP' %}<span>*</span></p>
-                            <input type="text">
+                            <p>{{ form.post_code.label_tag }}<span>*</span></p>
+                            {{ form.post_code }}
                         </div>
                     </div>
                 </div>
                 <div class="checkout__input">
-                    <p>{% trans 'Order notes' %}<span>*</span></p>
-                    <input type="text"
-                           placeholder="{% trans 'Notes about your order, e.g. special notes for delivery.' %}">
+                    <p>{{ form.customer_notes.label_tag }}<span>*</span></p>
+                    {{ form.customer_notes }}
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
@@ -58,9 +67,12 @@
                     <h4>{% trans 'Your Order' %}</h4>
                     <div class="checkout__order__products">{% trans 'Products' %} <span>{% trans 'Total' %}</span></div>
                     <ul>
-                        <li>Vegetable’s Package <span>$75.99</span></li>
-                        <li>Fresh Vegetable <span>$151.99</span></li>
-                        <li>Organic Bananas <span>$53.99</span></li>
+                        {% for cart_product in cart_products %}
+                            <li>{{ cart_product.product.title }} x {{ cart_product.count }}<span>{{ cart_product.product.price }} {{ site.currency }}</span></li>
+                        {% endfor %}
+
+{#                        <li>Fresh Vegetable <span>$151.99</span></li>#}
+{#                        <li>Organic Bananas <span>$53.99</span></li>#}
                     </ul>
 
                     <div class="checkout__order__total">{% trans 'Total' %} <span
