@@ -30,7 +30,8 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         ('title', 'slug'),
         'description',
-        ('price', 'strikeout_price')
+        ('price', 'strikeout_price'),
+        'sort_order'
     )
     prepopulated_fields = {'slug': ('title', 'category')}
     inlines = ProductImageAdminInline,
