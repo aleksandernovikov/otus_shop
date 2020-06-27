@@ -37,7 +37,6 @@ class CartProductViewSet(viewsets.ModelViewSet):
         :param kwargs:
         :return:
         """
-
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 

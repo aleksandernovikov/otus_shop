@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from usability.models import Subscriber, AdminMessage
+from usability.models import Subscriber, AdminMessage, FavoriteProduct
 
 
 class SubscriberSerializer(serializers.ModelSerializer):
@@ -20,5 +20,16 @@ class AdminMessageSerializer(serializers.ModelSerializer):
         Сохраним ip адрес написавшего
         """
         request = self.context.get('request')
-        validated_data['ip'] = request.META.get('REMOTE_ADDR')
+        if request:
+            validated_data['ip'] = request.META.get('REMOTE_ADDR')
         return AdminMessage.objects.create(**validated_data)
+
+
+class ShortFavoriteProductSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = FavoriteProduct
+        fields = 'user', 'product'
+
+

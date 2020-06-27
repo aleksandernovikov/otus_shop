@@ -271,6 +271,8 @@
     }
 
     const cartEndpoint = '/api/cart-products/'
+    const favoriteEndpoint = '/api/favorite/'
+
 
     function updateTopCartInformation(count, total) {
         $('span#cart-products-count').text(count)
@@ -449,10 +451,30 @@
 
         leaveMessageRequest(formData).done(function (response) {
             contactsForm.find('input, textarea').val('')
-            alert('Success')
+            alert('Сообщение отправлено')
         }).fail(function (response) {
-            alert('fail')
+            alert('Ошибка при отправке сообщения')
             console.log(response)
+        })
+    })
+
+    function toggleToFavoriteRequest(product_id) {
+        return $.ajax({
+            url: favoriteEndpoint,
+            type: 'POST',
+            data: {
+                product: product_id
+            }
+        })
+    }
+
+    let favorites = $('.add-to-favorite')
+    favorites.on('click', function (e) {
+        e.preventDefault()
+        const productId = $(this).data('product-id')
+        toggleToFavoriteRequest(productId).done(function (response) {
+            console.log(response)
+            $('#favorites').text(response.count)
         })
     })
 

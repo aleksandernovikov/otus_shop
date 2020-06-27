@@ -1,5 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+from products.models.product import Product
+
+User = get_user_model()
 
 
 class Subscriber(models.Model):
@@ -23,9 +28,21 @@ class AdminMessage(models.Model):
 
     class Meta:
         ordering = 'created',
+        unique_together = ('message', 'ip')
         verbose_name = _('Admin Message')
         verbose_name_plural = _('Admin Messages')
-        unique_together = ('message', 'ip')
 
     def __str__(self):
-        return f'{self.name} {self.created}'
+        return f'{self.name}<{self.email}> {self.created:%Y-%m-%d %H:%M}'
+
+
+class FavoriteProduct(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favorite_products')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _('Favorite Product')
+        verbose_name_plural = _('Favorite Products')
+
+    def __str__(self):
+        return f'{self.user} {self.product}'
