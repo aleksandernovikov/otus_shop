@@ -145,23 +145,13 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# available in templates via context manager
-SITE_DATA = {
-    'title': 'Ogani',
-    'phone': '+7 (499) 938-92-02',
-    'email': 'hello@otus-shop.com',
-    'header_text': 'Бесплатная доставка на все заказы от 2000 руб.',
-    'work_time': '10:00 - 20:00',
-    'map_url': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49116.39176087041!2d-86.41867791216099!3d39.69977417971648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886ca48c841038a1%3A0x70cfba96bf847f0!2sPlainfield%2C%20IN%2C%20USA!5e0!3m2!1sen!2sbd!4v1586106673811!5m2!1sen!2sbd',
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.FormParser',
 
-    'facebook_url': 'https://facebook.com/',
-    'twitter_url': 'https://twitter.com/',
-    'linkedin_url': 'https://linkedin.com',
-    'pinterest_url': 'https://www.pinterest.com/',
-    'instagram_url': 'https://www.instagram.com/',
-
-    'currency': '₽',
-    'address': '60-49 Road 11378 New York'
+    ]
 }
 
 # db queries logging
@@ -179,4 +169,23 @@ LOGGING = {
             'handlers': ['console'],
         },
     },
+}
+
+# available in templates via context manager
+SITE_DATA = {
+    'title': 'Ogani',
+    'phone': '+7 (499) 938-92-02',
+    'email': 'hello@otus-shop.com',
+    'header_text': 'Бесплатная доставка на все заказы от 2000 руб.',
+    'work_time': '10:00 - 20:00',
+    'map_url': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49116.39176087041!2d-86.41867791216099!3d39.69977417971648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886ca48c841038a1%3A0x70cfba96bf847f0!2sPlainfield%2C%20IN%2C%20USA!5e0!3m2!1sen!2sbd!4v1586106673811!5m2!1sen!2sbd',
+
+    'facebook_url': 'https://facebook.com/',
+    'twitter_url': 'https://twitter.com/',
+    'linkedin_url': 'https://linkedin.com',
+    'pinterest_url': 'https://www.pinterest.com/',
+    'instagram_url': 'https://www.instagram.com/',
+
+    'currency': '₽',
+    'address': '60-49 Road 11378 New York'
 }

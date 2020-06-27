@@ -264,6 +264,10 @@
     function ajaxErrorHandler(xhr, status, error) {
         if (xhr.status === 403)
             alert('Пожалуйста авторизуйтесь')
+        else {
+            alert(xhr.responseJSON)
+            console.log(xhr)
+        }
     }
 
     const cartEndpoint = '/api/cart-products/'
@@ -405,6 +409,51 @@
         const url = new URL(window.location.href)
         url.searchParams.set('sort', $(this).val())
         document.location.href = url
+    })
+
+
+    function subscribeRequest(email) {
+        return $.ajax({
+            url: '/api/subscribe/',
+            type: 'POST',
+            data: {
+                email: email
+            }
+        })
+    }
+
+    let subscribeForm = $('.footer__widget form')
+    subscribeForm.on('submit', function (e) {
+        e.preventDefault()
+        const email = $(this).find('input').val()
+        subscribeRequest(email).done(function (response) {
+            alert('Вы подписались')
+        }).fail(function (response) {
+            alert(response.responseJSON.email)
+        })
+    })
+
+    let contactsForm = $('#contact-form')
+
+    function leaveMessageRequest(formData) {
+        return $.ajax({
+            url: '/api/leave-message/',
+            type: 'POST',
+            data: formData
+        })
+    }
+
+    contactsForm.on('submit', function (e) {
+        e.preventDefault()
+        let formData = contactsForm.find('input, textarea').serialize()
+
+        leaveMessageRequest(formData).done(function (response) {
+            contactsForm.find('input, textarea').val('')
+            alert('Success')
+        }).fail(function (response) {
+            alert('fail')
+            console.log(response)
+        })
     })
 
 })(jQuery);

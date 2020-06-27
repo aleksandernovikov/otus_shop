@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -8,6 +10,21 @@ User = get_user_model()
 
 
 class Order(models.Model):
+    """
+    Модель заказа
+    """
+    ORDER_CREATED = 1
+    ORDER_AWAITING_PAYMENT = 2
+    ORDER_PAID = 3
+    ORDER_READY_FOR_DELIVERY = 4
+
+    ORDER_STATUS = (
+        (ORDER_CREATED, _('created')),
+        (ORDER_AWAITING_PAYMENT, _('awaiting payment')),
+        (ORDER_PAID, _('paid')),
+        (ORDER_READY_FOR_DELIVERY, _('order is ready for delivery'))
+    )
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     first_name = models.CharField(_('First Name'), max_length=70)
@@ -25,12 +42,26 @@ class Order(models.Model):
     customer_notes = models.CharField(_('Customer Notes'), max_length=250, blank=True)
     manager_notes = models.CharField(_('Manager Notes'), max_length=250, blank=True)
 
-    order_date = models.DateTimeField(auto_now=True)
-    products = models.ManyToManyField(Product)
+    order_created = models.DateTimeField(_('Order created'), auto_now_add=True, editable=False, blank=True)
+    order_updated = models.DateTimeField(_('Order updated'), auto_now=True, blank=True)
+
+    order_status = models.PositiveSmallIntegerField(_('Order status'), choices=ORDER_STATUS, default=ORDER_CREATED)
+
+    products = models.ManyToManyField(Product, through='OrderedProduct')
     total_order_price = models.DecimalField(decimal_places=2, max_digits=7)
+
+    def __str__(self):
+        return f'{self.user} {self.order_created}'
 
 
 class OrderedProduct(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='ordered_products')
+    """
+    Продукты заказа, в них запоминаеются заказ, продукт, цена продукта и количество
+    """
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='ordered_products')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     selling_price = models.DecimalField(max_digits=7, decimal_places=2)
     count = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return f'{self.order}->{self.product}'

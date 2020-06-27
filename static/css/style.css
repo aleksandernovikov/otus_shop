@@ -3645,3 +3645,21 @@ h5 a.cart-btn {
     color: #1c1c1c;
     display: block;
 }
+
+
+.order-item {
+    margin: 10px 0 auto;
+    border: 1px solid #ededed;
+    font-size: 1rem;
+    border-radius: 2px;
+}
+
+.order-title {
+    background: #f3f6fa;
+    padding: 5px;
+}
+
+.order-block {
+    font-size: 1.5rem;
+    margin: 10px;
+}

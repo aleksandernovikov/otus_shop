@@ -15,6 +15,8 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
 
     path('api/', include('products.api.urls')),
+    path('api/', include('usability.api.urls')),
+
     path('cart/', CartProductView.as_view(), name='cart'),
     path('checkout/', OrderCreateView.as_view(), name='checkout'),
 ]

@@ -1,13 +1,15 @@
 from django import views
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
+from products.models.order import Order
 from shop_user.forms import UserSignUpForm, UserProfileForm
 
 User = get_user_model()
 
 
-class ShopUserProfile(views.generic.UpdateView):
+class ShopUserProfile(LoginRequiredMixin, views.generic.UpdateView):
     """
     Профиль пользователя
     """
@@ -30,3 +32,9 @@ class ShopUserSignUp(views.generic.FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class OrderListView(LoginRequiredMixin, views.generic.ListView):
+    model = Order
+    template_name = 'shop_user/orders.html'
+    paginate_by = 10

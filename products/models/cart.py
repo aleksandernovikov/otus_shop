@@ -31,6 +31,10 @@ class CartProduct(models.Model):
             return result
         return result
 
+    @staticmethod
+    def empty_cart(user):
+        CartProduct.objects.filter(owner=user).delete()
+
     class Meta:
         verbose_name = _('Cart Product')
         verbose_name_plural = _('Cart Products')

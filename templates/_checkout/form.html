@@ -1,7 +1,7 @@
 {% load i18n %}
 <div class="checkout__form">
     <h4>{% trans 'Billing Details' %}</h4>
-    <form action="#">
+    <form action="{% url 'checkout' %}" method="post">
         {% csrf_token %}
         <div class="row">
             <div class="col-lg-8 col-md-6">
@@ -12,6 +12,10 @@
                                 {{ form.first_name.label_tag }}<span>*</span>
                             </p>
                             {{ form.first_name }}
+
+                            {% for error in form.first_name.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -68,11 +72,10 @@
                     <div class="checkout__order__products">{% trans 'Products' %} <span>{% trans 'Total' %}</span></div>
                     <ul>
                         {% for cart_product in cart_products %}
-                            <li>{{ cart_product.product.title }} x {{ cart_product.count }}<span>{{ cart_product.product.price }} {{ site.currency }}</span></li>
+                            <li>{{ cart_product.title }} x {{ cart_product.count }}
+                                <span>{{ cart_product.total }} {{ site.currency }}</span>
+                            </li>
                         {% endfor %}
-
-{#                        <li>Fresh Vegetable <span>$151.99</span></li>#}
-{#                        <li>Organic Bananas <span>$53.99</span></li>#}
                     </ul>
 
                     <div class="checkout__order__total">{% trans 'Total' %} <span
