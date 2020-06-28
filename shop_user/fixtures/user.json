@@ -1,1 +1,44 @@
-[{"model": "shop_user.shopuser", "pk": 1, "fields": {"password": "pbkdf2_sha256$180000$yLDiWxVUrVY0$qMTcJvp5WvkX8z/iQ+0ydRikCSRFiQFLsqPfNk6KNR0=", "last_login": "2020-06-26T07:18:45.223Z", "is_superuser": true, "username": "user", "first_name": "\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440", "last_name": "", "is_staff": true, "is_active": true, "date_joined": "2020-06-19T13:18:10.195Z", "avatar": "avatars/d15a201f-3e53-4ff8-8008-2bbc5472091e.jpg", "short_description": "", "middle_name": "", "email": "cahek1@inbox.ru", "groups": [], "user_permissions": []}}]
+[
+  {
+    "model": "shop_user.shopuser",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$yLDiWxVUrVY0$qMTcJvp5WvkX8z/iQ+0ydRikCSRFiQFLsqPfNk6KNR0=",
+      "last_login": "2020-06-25T16:20:51.689Z",
+      "is_superuser": true,
+      "username": "user122222333333",
+      "first_name": "\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440",
+      "last_name": "\u0424\u0430\u043c\u0438\u043b\u0438\u044f",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-06-19T13:18:10.195Z",
+      "avatar": "avatars/yagody_dnm3NKd.jpg.292x270_q85_crop.jpg",
+      "short_description": "",
+      "middle_name": "\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e",
+      "email": "cahek1@inbox.ru",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "shop_user.shopuser",
+    "pk": 2,
+    "fields": {
+      "password": "123",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "qwer",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2020-06-27T20:03:59Z",
+      "avatar": "",
+      "short_description": "",
+      "middle_name": "",
+      "email": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

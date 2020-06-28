@@ -72,7 +72,8 @@ class ProductDetailsView(views.generic.DetailView):
         product = self.get_object()
 
         ctx.update({
-            'product_images': product.product_images.all()
+            'product_images': product.product_images.all(),
+            'product_characteristics': product.product_characteristics.all()
         })
         return ctx
 

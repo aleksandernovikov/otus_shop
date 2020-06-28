@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-24 17:42+0300\n"
+"POT-Creation-Date: 2020-06-28 15:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,22 +32,18 @@ msgstr "Категории публикации"
 msgid "Post You May Like"
 msgstr "Публикации которые могут вам понравится"
 
-#: blog/templates/blog/_blog_post_details/post_content.html:17
+#: blog/templates/blog/_blog_post_details/post_content.html:23
 msgid "Admin"
 msgstr "Администратор"
 
-#: blog/templates/blog/_blog_post_details/post_content.html:18
+#: blog/templates/blog/_blog_post_details/post_content.html:24
 msgid "User"
 msgstr "Пользователь"
 
-#: blog/templates/blog/_blog_post_details/post_content.html:25
+#: blog/templates/blog/_blog_post_details/post_content.html:31
 #: blog/templates/blog/_blog_sidebar/_categories.html:1
 msgid "Categories"
 msgstr "Категории"
-
-#: blog/templates/blog/_blog_post_details/post_content.html:28
-msgid "Tags"
-msgstr "Тэги"
 
 #: blog/templates/blog/_blog_post_details/post_heading.html:11
 msgid "Comments"
@@ -70,30 +66,168 @@ msgstr "Свежие новости"
 msgid "Search..."
 msgstr "Поиск..."
 
-#: products/models/cart.py:35
+#: products/forms.py:17
+msgid "Street Address"
+msgstr "Улица"
+
+#: products/forms.py:18
+msgid "Apartment, suite, unite ect (optinal)"
+msgstr "Квартира, дом"
+
+#: products/forms.py:20
+msgid "Notes about your order, e.g. special notes for delivery."
+msgstr "Заметки о заказе для доставки."
+
+#: products/models/cart.py:39
 msgid "Cart Product"
 msgstr "Продукт в корзине"
 
-#: products/models/cart.py:36
+#: products/models/cart.py:40
 msgid "Cart Products"
 msgstr "Продукты в корзине"
 
+#: products/models/measure.py:15
+msgid "Measure not selected"
+msgstr ""
+
+#: products/models/measure.py:16
+msgid "Weight"
+msgstr "Вес"
+
+#: products/models/measure.py:17 templates/_cart_products/table.html:10
+msgid "Quantity"
+msgstr "Количество"
+
+#: products/models/measure.py:18
+msgid "Length"
+msgstr "Длина"
+
+#: products/models/measure.py:21
+#| msgid "Your name"
+msgid "Measure name"
+msgstr "Название единицы измерения"
+
+#: products/models/measure.py:22
+#| msgid "Category"
+msgid "Measure Category"
+msgstr "Категория единицы измерения"
+
+#: products/models/order.py:22
+msgid "created"
+msgstr "Создан"
+
+#: products/models/order.py:23
+msgid "awaiting payment"
+msgstr "Ожидает оплаты"
+
+#: products/models/order.py:24
+msgid "paid"
+msgstr "Оплачено"
+
+#: products/models/order.py:25
+msgid "order is ready for delivery"
+msgstr "Заказ готов для отправки"
+
+#: products/models/order.py:30
+#| msgid "Fist Name"
+msgid "First Name"
+msgstr "Имя"
+
+#: products/models/order.py:31
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: products/models/order.py:33
+msgid "State"
+msgstr "Область"
+
+#: products/models/order.py:34
+#| msgid "Town/City"
+msgid "City"
+msgstr "Город"
+
+#: products/models/order.py:36
+#| msgid "Street Address"
+msgid "Street"
+msgstr "Улица"
+
+#: products/models/order.py:37
+msgid "Building"
+msgstr "Дом, Строение"
+
+#: products/models/order.py:39 templates/_footer/main.html:11
+#: templates/contacts/map.html:10 templates/contacts/top.html:8
+msgid "Phone"
+msgstr "Телефон"
+
+#: products/models/order.py:40
+#| msgid "Discount Codes"
+msgid "Post Code"
+msgstr "Почтовый индекс"
+
+#: products/models/order.py:42
+msgid "Customer Notes"
+msgstr "Заметки клиента"
+
+#: products/models/order.py:43
+msgid "Manager Notes"
+msgstr "Заметки менеджера"
+
+#: products/models/order.py:45
+#| msgid "Order notes"
+msgid "Order created"
+msgstr "Заказ создан"
+
+#: products/models/order.py:46
+#| msgid "Order notes"
+msgid "Order updated"
+msgstr "Заказ обновлен"
+
+#: products/models/order.py:48
+#| msgid "Order notes"
+msgid "Order status"
+msgstr "Статус заказа"
+
 #: products/models/product.py:21
-msgid "Sale price"
+#| msgid "Sale price"
+msgid "Selling price"
+msgstr "Цена"
+
+#: products/models/product.py:22
+msgid "Price at which the product will be sold"
+msgstr "Цена по которой товар будет продан"
+
+#: products/models/product.py:25
+#| msgid "Product categories"
+msgid "Product Characteristics"
+msgstr "Характеристики продукта"
+
+#: products/models/product.py:27
+#| msgid "Sale price"
+msgid "Strikeout price"
 msgstr "Цена распродажи"
 
-#: products/models/product.py:40
+#: products/models/product.py:31
+msgid "Crossed/old product price"
+msgstr "Перечеркнутая/Старая цена товара"
+
+#: products/models/product.py:36
+#| msgid "Order notes"
+msgid "Ordering"
+msgstr "Порядок"
+
+#: products/models/product.py:53
 msgid "at a price of"
 msgstr "по цене"
 
-#: products/models/product.py:50
+#: products/models/product.py:69
 msgid "Product"
-msgstr "Продукт"
+msgstr "Товар"
 
-#: products/models/product.py:51 templates/_cart_products/table.html:8
-#: templates/_checkout/form.html:85
+#: products/models/product.py:70 templates/_cart_products/table.html:8
+#: templates/_checkout/form.html:72
 msgid "Products"
-msgstr "Продукты"
+msgstr "Товары"
 
 #: products/models/product_category.py:16
 msgid "Category description"
@@ -115,19 +249,139 @@ msgstr "Категория продукта"
 msgid "Product categories"
 msgstr "Категории продуктов"
 
-#: shop_user/models.py:9
+#: products/templates/products/_product_details/information_and_action.html:24
+msgid "ADD TO CARD"
+msgstr "В корзину"
+
+#: products/templates/products/_product_details/information_and_action.html:37
+msgid "Share on"
+msgstr "Поделиться"
+
+#: products/templates/products/_product_details/related_products.html:6
+msgid "Related Product"
+msgstr "Рекомендованные продукты"
+
+#: products/templates/products/_product_details/tabs.html:6
+msgid "Description"
+msgstr "Описание"
+
+#: products/templates/products/_product_details/tabs.html:10
+msgid "Information"
+msgstr "Информация"
+
+#: products/templates/products/_product_details/tabs.html:20
+msgid "Product Description"
+msgstr "Описание товара"
+
+#: products/templates/products/_product_details/tabs.html:44
+msgid "Products Infomation"
+msgstr "Информация о товаре"
+
+#: products/templates/products/_products/_products_heading.html:6
+msgid "Sort By"
+msgstr "Сорт."
+
+#: products/templates/products/_products/_products_heading.html:8
+msgid "Default"
+msgstr "Умолчание"
+
+#: products/templates/products/_products/_products_heading.html:9
+msgid "Cheap first"
+msgstr "Сначала дешевые"
+
+#: products/templates/products/_products/_products_heading.html:10
+msgid "Expensive first"
+msgstr "Сначала дорогие"
+
+#: products/templates/products/_products/main.html:13
+msgid "Sale Off"
+msgstr "Распродажа"
+
+#: products/templates/products/_products/sidebar.html:4
+msgid "Department"
+msgstr "Отдел"
+
+#: products/templates/products/_products/sidebar.html:8
+#: templates/_cart_products/table.html:9
+msgid "Price"
+msgstr "Цена"
+
+#: products/templates/products/_products/sidebar.html:25
+msgid "Colors"
+msgstr "Цвета"
+
+#: products/templates/products/_products/sidebar.html:64
+msgid "Popular Size"
+msgstr "Популярный размер"
+
+#: products/templates/products/_products/sidebar.html:94
+msgid "Latest Products"
+msgstr "Последние поступления"
+
+#: shop_user/models.py:17
+msgid "Avatar"
+msgstr "Аватар"
+
+#: shop_user/models.py:18
 msgid "Short Description"
 msgstr "Короткое описание"
 
-#: shop_user/models.py:11
+#: shop_user/models.py:20
 msgid "Middle Name"
 msgstr "Отчество"
 
-#: shop_user/models.py:13
+#: shop_user/models.py:22
 msgid "email address"
 msgstr "Адрес электронной почты"
 
-#: shop_user/templates/shop_user/_profile_form.html:10
+#: shop_user/templates/registration/_login_form.html:4
+#| msgid "Login"
+msgid "User Login"
+msgstr "Логин пользователя"
+
+#: shop_user/templates/registration/_login_form.html:6
+msgid "Your username and password didn't match. Please try again."
+msgstr "Ваше имя пользователя и пароль не подходят, пожалуйста попробуйте еще."
+
+#: shop_user/templates/registration/_login_form.html:11
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+
+#: shop_user/templates/registration/_login_form.html:13
+msgid "Please login to see this page."
+msgstr "Пожалуйста войдите чтобы видеть эту страницу"
+
+#: shop_user/templates/registration/_login_form.html:35
+msgid "LOGIN"
+msgstr "Войти"
+
+#: shop_user/templates/registration/logged_out.html:5
+msgid "Logged out"
+msgstr "Вы вышли"
+
+#: shop_user/templates/registration/logged_out.html:14
+msgid "You logged out!"
+msgstr "Вы вышли"
+
+#: shop_user/templates/registration/logged_out.html:21
+msgid "Click here to login again."
+msgstr "Кликните сюда, чтобы снова войти."
+
+#: shop_user/templates/registration/login.html:5
+msgid "Login page"
+msgstr "Страница входа"
+
+#: shop_user/templates/registration/login.html:16
+msgid "Lost password?"
+msgstr "Забыли пароль?"
+
+#: shop_user/templates/registration/login.html:17
+msgid "Sign Up"
+msgstr "Регистрация"
+
+#: shop_user/templates/shop_user/_profile_form.html:22
 msgid "Save"
 msgstr "Сохранить"
 
@@ -140,17 +394,58 @@ msgid "Profile"
 msgstr "Профиль"
 
 #: shop_user/templates/shop_user/_profile_sidebar.html:14
+msgid "Favorites"
+msgstr "Избранное"
+
+#: shop_user/templates/shop_user/_profile_sidebar.html:17
+msgid "Orders history"
+msgstr "История заказов"
+
+#: shop_user/templates/shop_user/_profile_sidebar.html:20
 msgid "Cart"
 msgstr "Корзина"
 
-#: shop_user/templates/shop_user/_profile_sidebar.html:17
+#: shop_user/templates/shop_user/_profile_sidebar.html:23
 msgid "Logout"
 msgstr "Выход"
 
+#: shop_user/templates/shop_user/orders.html:5
+#| msgid "order"
+msgid "User orders"
+msgstr "Заказы пользователя"
+
+#: shop_user/templates/shop_user/orders.html:14
 #: shop_user/templates/shop_user/profile.html:5
 #: shop_user/templates/shop_user/profile.html:14
 msgid "User profile"
 msgstr "Профиль пользователя"
+
+#: shop_user/templates/shop_user/orders.html:24
+#: venv/lib/python3.6/site-packages/django/forms/formsets.py:379
+#: venv/lib/python3.6/site-packages/django/forms/formsets.py:386
+msgid "Order"
+msgstr "Заказ"
+
+#: shop_user/templates/shop_user/orders.html:24
+msgid "from date"
+msgstr "от"
+
+#: shop_user/templates/shop_user/orders.html:27
+msgid "Sum"
+msgstr "Сумма"
+
+#: shop_user/templates/shop_user/signup.html:5
+#| msgid "Login page"
+msgid "Signup page"
+msgstr "Страница регистрации"
+
+#: shop_user/templates/shop_user/signup.html:13
+msgid "User Registration"
+msgstr "Регистрация пользователя"
+
+#: shop_user/templates/shop_user/signup.html:46
+msgid "REGISTER"
+msgstr "Регистрация"
 
 #: templates/_breadcrumbs/main.html:9 templates/_header/middle.html:15
 msgid "Home"
@@ -169,47 +464,23 @@ msgstr "Продолжить покупки"
 msgid "Upadate Cart"
 msgstr "Обновить Корзину"
 
-#: templates/_cart_products/bottom.html:15
-msgid "Discount Codes"
-msgstr "Коды скидок"
-
 #: templates/_cart_products/bottom.html:17
-msgid "Enter your coupon code"
-msgstr "Введите ваш код купона"
-
-#: templates/_cart_products/bottom.html:18
-msgid "APPLY COUPON"
-msgstr "Применить купон"
-
-#: templates/_cart_products/bottom.html:25
 msgid "Cart Total"
 msgstr "Итого в корзине"
 
-#: templates/_cart_products/bottom.html:27
-msgid "Subtotal"
-msgstr "Промежуточный итог"
-
-#: templates/_cart_products/bottom.html:28
-#: templates/_cart_products/table.html:11 templates/_checkout/form.html:85
+#: templates/_cart_products/bottom.html:20
+#: templates/_cart_products/table.html:11 templates/_checkout/form.html:72
+#: templates/_checkout/form.html:81
 msgid "Total"
 msgstr "Итого"
 
-#: templates/_cart_products/bottom.html:30
+#: templates/_cart_products/bottom.html:24
 msgid "PROCEED TO CHECKOUT"
 msgstr "Перейти к оплате"
 
 #: templates/_cart_products/main.html:7
-#| msgid "All products"
 msgid "No products"
 msgstr "Продуктов нет"
-
-#: templates/_cart_products/table.html:9 templates/_products/sidebar.html:8
-msgid "Price"
-msgstr "Цена"
-
-#: templates/_cart_products/table.html:10
-msgid "Quantity"
-msgstr "Количество"
 
 #: templates/_checkout/coupon.html:5
 msgid "Have a coupon?"
@@ -227,97 +498,22 @@ msgstr "для ввода вашего кода"
 msgid "Billing Details"
 msgstr "Платежные реквизиты"
 
-#: templates/_checkout/form.html:10
-msgid "Fist Name"
-msgstr "Имя"
-
-#: templates/_checkout/form.html:16
-msgid "Last Name"
-msgstr "Фамилия"
-
-#: templates/_checkout/form.html:22
-msgid "Country"
-msgstr "Страна"
-
-#: templates/_checkout/form.html:26 templates/_footer/main.html:10
-#: templates/contacts/top.html:15
-msgid "Address"
-msgstr "Адрес"
-
-#: templates/_checkout/form.html:27
-msgid "Street Address"
-msgstr "Улица"
-
-#: templates/_checkout/form.html:28
-msgid "Apartment, suite, unite ect (optinal)"
-msgstr "Квартира, дом"
-
-#: templates/_checkout/form.html:31
-msgid "Town/City"
-msgstr "Город"
-
-#: templates/_checkout/form.html:35
-msgid "Country/State"
-msgstr "Штат/Область"
-
-#: templates/_checkout/form.html:39
-msgid "Postcode / ZIP"
-msgstr "Почтовый индекс"
-
-#: templates/_checkout/form.html:45 templates/_footer/main.html:11
-#: templates/contacts/top.html:8
-msgid "Phone"
-msgstr "Телефон"
-
-#: templates/_checkout/form.html:51 templates/contacts/top.html:29
-msgid "Email"
-msgstr "Электронная почта"
-
-#: templates/_checkout/form.html:58 templates/_checkout/form.html:95
-msgid "Create an account?"
-msgstr "Создать аккаунт?"
-
-#: templates/_checkout/form.html:64
-msgid ""
-"Create an account by entering the information below. If you are a returning "
-"customer please login at the top of the page"
-msgstr ""
-
-#: templates/_checkout/form.html:66
-msgid "Account Password"
-msgstr "Пароль аккаунта"
-
 #: templates/_checkout/form.html:71
-msgid "Ship to a different address?"
-msgstr "Доставить на другой адрес?"
-
-#: templates/_checkout/form.html:77
-msgid "Order notes"
-msgstr "Заметки к заказу"
-
-#: templates/_checkout/form.html:79
-msgid "Notes about your order, e.g. special notes for delivery."
-msgstr "Заметки о заказе для доставки."
-
-#: templates/_checkout/form.html:84
 msgid "Your Order"
 msgstr "Ваш заказ"
 
-#: templates/_checkout/form.html:104
-msgid "Check Payment"
-msgstr "Проверить оплату"
-
-#: templates/_checkout/form.html:111
-msgid "Paypal"
-msgstr ""
-
-#: templates/_checkout/form.html:116
+#: templates/_checkout/form.html:84
 msgid "PLACE ORDER"
 msgstr "Разместить заказ"
 
 #: templates/_featured/main.html:7
 msgid "Featured Product"
 msgstr "Рекомендованные продукты"
+
+#: templates/_footer/main.html:10 templates/contacts/map.html:11
+#: templates/contacts/top.html:15
+msgid "Address"
+msgstr "Адрес"
 
 #: templates/_footer/main.html:18
 msgid "Useful Links"
@@ -339,16 +535,16 @@ msgstr "Введите ваш email"
 msgid "Subscribe"
 msgstr "Подписаться"
 
-#: templates/_header/middle.html:37
+#: templates/_header/middle.html:21
 #: usability/templates/usability/pages/blog.html:13
 msgid "Blog"
 msgstr "Блог"
 
-#: templates/_header/middle.html:41
+#: templates/_header/middle.html:24
 msgid "Contact"
 msgstr "Контакты"
 
-#: templates/_header/middle.html:57
+#: templates/_header/middle.html:45
 msgid "order"
 msgstr "заказ"
 
@@ -380,107 +576,23 @@ msgstr "Чего изволите?"
 msgid "SEARCH"
 msgstr "ПОИСК"
 
-#: templates/_product_details/information_and_action.html:24
-msgid "ADD TO CARD"
-msgstr "В корзину"
-
-#: templates/_product_details/information_and_action.html:29
-msgid "Availability"
-msgstr "Доступно"
-
-#: templates/_product_details/information_and_action.html:29
-msgid "In Stock"
-msgstr "Мало"
-
-#: templates/_product_details/information_and_action.html:31
-msgid "Shipping"
-msgstr "Доставка"
-
-#: templates/_product_details/information_and_action.html:31
-msgid "Free pickup today"
-msgstr "Самовывоз сегодня"
-
-#: templates/_product_details/information_and_action.html:34
-msgid "Weight"
-msgstr "Вес"
-
-#: templates/_product_details/information_and_action.html:38
-msgid "Share on"
-msgstr "Поделиться"
-
-#: templates/_product_details/related_products.html:6
-msgid "Related Product"
-msgstr "Рекомендованные продукты"
-
-#: templates/_product_details/tabs.html:6
-msgid "Description"
-msgstr "Описание"
-
-#: templates/_product_details/tabs.html:10
-msgid "Information"
-msgstr "Информация"
-
-#: templates/_product_details/tabs.html:20
-msgid "Product Description"
-msgstr "Описание товара"
-
-#: templates/_product_details/tabs.html:44
-msgid "Products Infomation"
-msgstr "Информация о товаре"
-
-#: templates/_products/_products_heading.html:6
-msgid "Sort By"
-msgstr "Сорт."
-
-#: templates/_products/_products_heading.html:8
-msgid "Default"
-msgstr "Умолчание"
-
-#: templates/_products/_products_heading.html:9
-msgid "Sort by popularity"
-msgstr "Популярность"
-
-#: templates/_products/_products_heading.html:15
-msgid "Products found"
-msgstr "Продуктов найдено"
-
-#: templates/_products/main.html:15
-msgid "Sale Off"
-msgstr "Распродажа"
-
-#: templates/_products/sidebar.html:4
-msgid "Department"
-msgstr "Отдел"
-
-#: templates/_products/sidebar.html:25
-msgid "Colors"
-msgstr "Цвета"
-
-#: templates/_products/sidebar.html:64
-msgid "Popular Size"
-msgstr "Популярный размер"
-
-#: templates/_products/sidebar.html:94
-msgid "Latest Products"
-msgstr "Последние поступления"
-
 #: templates/contacts/form.html:7
 msgid "Leave Message"
 msgstr "Оставить сообщение"
 
-#: templates/contacts/form.html:14
+#: templates/contacts/form.html:15
 msgid "Your name"
 msgstr "Ваше имя"
 
-#: templates/contacts/form.html:17
+#: templates/contacts/form.html:18
 msgid "Your Email"
 msgstr "Электронная почта"
 
-#: templates/contacts/form.html:20
+#: templates/contacts/form.html:21
 msgid "Your message"
 msgstr "Сообщение"
 
-#: templates/contacts/form.html:21
+#: templates/contacts/form.html:22
 msgid "SEND MESSAGE"
 msgstr "Отправить сообщение"
 
@@ -489,46 +601,64 @@ msgid "Contact Us"
 msgstr "Связаться с нами"
 
 #: templates/contacts/top.html:22
-msgid "Open time"
-msgstr "Время открытия"
-
-#: templates/registration/_login_form.html:5
-msgid "Your username and password didn't match. Please try again."
+msgid "Work time"
 msgstr ""
 
-#: templates/registration/_login_form.html:10
-msgid ""
-"Your account doesn't have access to this page. To proceed, please login with "
-"an account that has access."
+#: templates/contacts/top.html:29 usability/models.py:24
+msgid "Email"
+msgstr "Электронная почта"
+
+#: usability/models.py:15
+#, fuzzy
+#| msgid "Subscribe"
+msgid "Subscriber"
+msgstr "Подписаться"
+
+#: usability/models.py:16
+#, fuzzy
+#| msgid "Subscribe"
+msgid "Subscribers"
+msgstr "Подписаться"
+
+#: usability/models.py:23
+#, fuzzy
+#| msgid "Fist Name"
+msgid "Name"
+msgstr "Имя"
+
+#: usability/models.py:25
+#, fuzzy
+#| msgid "Messages"
+msgid "Message"
+msgstr "Сообщения"
+
+#: usability/models.py:27
+msgid "Ip"
 msgstr ""
 
-#: templates/registration/_login_form.html:12
-msgid "Please login to see this page."
-msgstr "Пожалуйста войдите чтобы видеть эту страницу"
+#: usability/models.py:32
+#, fuzzy
+#| msgid "Messages"
+msgid "Admin Message"
+msgstr "Сообщения"
 
-#: templates/registration/_login_form.html:34
-msgid "LOGIN"
-msgstr "Войти"
+#: usability/models.py:33
+#, fuzzy
+#| msgid "Messages"
+msgid "Admin Messages"
+msgstr "Сообщения"
 
-#: templates/registration/logged_out.html:5
-msgid "Logged out"
-msgstr "Вы вышли"
+#: usability/models.py:44
+#, fuzzy
+#| msgid "Cart Product"
+msgid "Favorite Product"
+msgstr "Продукт в корзине"
 
-#: templates/registration/logged_out.html:14
-msgid "You logged out!"
-msgstr "Вы вышли"
-
-#: templates/registration/logged_out.html:21
-msgid "Click here to login again."
-msgstr "Кликните сюда, чтобы снова войти."
-
-#: templates/registration/login.html:5
-msgid "Login page"
-msgstr "Страница входа"
-
-#: templates/registration/login.html:16
-msgid "Lost password?"
-msgstr "Забыли пароль?"
+#: usability/models.py:45
+#, fuzzy
+#| msgid "Cart Products"
+msgid "Favorite Products"
+msgstr "Продукты в корзине"
 
 #: usability/templates/usability/pages/blog.html:5
 msgid "Blog page"
@@ -544,9 +674,19 @@ msgstr "Категория"
 msgid "Shopping Cart"
 msgstr "Корзина покупок"
 
+#: usability/templates/usability/pages/checkout.html:5
+msgid "Checkout"
+msgstr ""
+
 #: usability/templates/usability/pages/contacts.html:5
 msgid "Contacts page"
 msgstr "Страница контактов"
+
+#: usability/templates/usability/pages/favorites.html:5
+#: usability/templates/usability/pages/favorites.html:14
+#| msgid "User profile"
+msgid "User favorites"
+msgstr "Избранные товары"
 
 #: usability/templates/usability/pages/index.html:5
 msgid "Cheap to buy delicious fruits and vegetables with delivery"
@@ -1143,11 +1283,6 @@ msgid "Please submit %d or more forms."
 msgid_plural "Please submit %d or more forms."
 msgstr[0] ""
 msgstr[1] ""
-
-#: venv/lib/python3.6/site-packages/django/forms/formsets.py:379
-#: venv/lib/python3.6/site-packages/django/forms/formsets.py:386
-msgid "Order"
-msgstr ""
 
 #: venv/lib/python3.6/site-packages/django/forms/formsets.py:391
 msgid "Delete"
@@ -1786,6 +1921,60 @@ msgstr ""
 #: venv/lib/python3.6/site-packages/django/views/templates/default_urlconf.html:409
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Availability"
+#~ msgstr "Доступно"
+
+#~ msgid "In Stock"
+#~ msgstr "Мало"
+
+#~ msgid "Shipping"
+#~ msgstr "Доставка"
+
+#~ msgid "Free pickup today"
+#~ msgstr "Самовывоз сегодня"
+
+#~ msgid "Tags"
+#~ msgstr "Тэги"
+
+#~ msgid "Enter your coupon code"
+#~ msgstr "Введите ваш код купона"
+
+#~ msgid "APPLY COUPON"
+#~ msgstr "Применить купон"
+
+#~ msgid "Subtotal"
+#~ msgstr "Промежуточный итог"
+
+#~ msgid "Country"
+#~ msgstr "Страна"
+
+#~ msgid "Country/State"
+#~ msgstr "Штат/Область"
+
+#~ msgid "Postcode / ZIP"
+#~ msgstr "Почтовый индекс"
+
+#~ msgid "Create an account?"
+#~ msgstr "Создать аккаунт?"
+
+#~ msgid "Account Password"
+#~ msgstr "Пароль аккаунта"
+
+#~ msgid "Ship to a different address?"
+#~ msgstr "Доставить на другой адрес?"
+
+#~ msgid "Check Payment"
+#~ msgstr "Проверить оплату"
+
+#~ msgid "Sort by popularity"
+#~ msgstr "Популярность"
+
+#~ msgid "Products found"
+#~ msgstr "Продуктов найдено"
+
+#~ msgid "Open time"
+#~ msgstr "Время открытия"
 
 #~| msgid "Cart"
 #~ msgid "Carts"

@@ -3,6 +3,7 @@ from django.utils.functional import cached_property
 from pytils.translit import slugify
 from django.utils.translation import gettext_lazy as _
 
+# from products.models.measure import ProductMeasure, ProductCharacteristics
 from products.models.product_category import ProductCategory
 from products.models.product_image import ProductImage
 
@@ -19,6 +20,9 @@ class Product(models.Model):
 
     price = models.DecimalField(_('Selling price'), decimal_places=2, max_digits=5,
                                 help_text=_('Price at which the product will be sold'))
+
+    characteristics = models.ManyToManyField('ProductMeasure', through='ProductCharacteristic', blank=True,
+                                             verbose_name=_('Product Characteristics'))
 
     strikeout_price = models.DecimalField(_('Strikeout price'),
                                           decimal_places=2, max_digits=5,

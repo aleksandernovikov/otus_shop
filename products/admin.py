@@ -5,6 +5,7 @@ from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
 from products.models.cart import CartProduct
+from .models.measure import ProductMeasure, ProductCharacteristic
 from .models.order import Order, OrderedProduct
 from .models.product_category import ProductCategory
 from .models.product import Product
@@ -14,6 +15,12 @@ from .models.product_image import ProductImage
 class ProductImageAdminInline(admin.TabularInline):
     model = ProductImage
     extra = 1
+
+
+class ProductCharacteristicsAdminInline(admin.TabularInline):
+    model = ProductCharacteristic
+    extra = 1
+    fields = 'value', 'measure'
 
 
 class ProductAdminForm(forms.ModelForm):
@@ -32,10 +39,11 @@ class ProductAdmin(admin.ModelAdmin):
         ('title', 'slug'),
         'description',
         ('price', 'strikeout_price'),
+        # ('unit_count', 'unit_measure'),
         'sort_order'
     )
     prepopulated_fields = {'slug': ('title', 'category')}
-    inlines = ProductImageAdminInline,
+    inlines = ProductImageAdminInline, ProductCharacteristicsAdminInline
     autocomplete_fields = 'category',
 
 
@@ -68,3 +76,8 @@ class OrderedProductInline(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     inlines = OrderedProductInline,
+
+
+@admin.register(ProductMeasure)
+class ProductMeasureAdmin(admin.ModelAdmin):
+    pass

@@ -1,0 +1,89 @@
+[
+  {
+    "model": "products.productmeasure",
+    "pk": 1,
+    "fields": {
+      "title": "\u0433\u0440.",
+      "category": 1
+    }
+  },
+  {
+    "model": "products.productmeasure",
+    "pk": 2,
+    "fields": {
+      "title": "\u0448\u0442.",
+      "category": 2
+    }
+  },
+  {
+    "model": "products.productmeasure",
+    "pk": 3,
+    "fields": {
+      "title": "\u043a\u0433.",
+      "category": 1
+    }
+  },
+  {
+    "model": "products.productcharacteristic",
+    "pk": 1,
+    "fields": {
+      "product": 6,
+      "measure": 1,
+      "value": 800
+    }
+  },
+  {
+    "model": "products.productcharacteristic",
+    "pk": 2,
+    "fields": {
+      "product": 6,
+      "measure": 2,
+      "value": 1
+    }
+  },
+  {
+    "model": "products.productcharacteristic",
+    "pk": 3,
+    "fields": {
+      "product": 5,
+      "measure": 3,
+      "value": 1
+    }
+  },
+  {
+    "model": "products.productcharacteristic",
+    "pk": 4,
+    "fields": {
+      "product": 4,
+      "measure": 3,
+      "value": 1
+    }
+  },
+  {
+    "model": "products.productcharacteristic",
+    "pk": 5,
+    "fields": {
+      "product": 3,
+      "measure": 3,
+      "value": 1
+    }
+  },
+  {
+    "model": "products.productcharacteristic",
+    "pk": 6,
+    "fields": {
+      "product": 2,
+      "measure": 3,
+      "value": 1
+    }
+  },
+  {
+    "model": "products.productcharacteristic",
+    "pk": 7,
+    "fields": {
+      "product": 1,
+      "measure": 3,
+      "value": 1
+    }
+  }
+]

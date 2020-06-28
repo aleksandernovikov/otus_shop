@@ -220,14 +220,15 @@
         }
         let input = $button.parent().find('input')
         input.val(newVal);
-        let cartProductId = input.data('product-id')
 
         // my
-        updateCartProductRequest(cartProductId, newVal).done(function (response) {
-            updateProductTotalPrice(cartProductId, response)
-            updateCartTotal()
-        }).fail(ajaxErrorHandler)
-
+        let cartProductId = input.data('cart-product-id')
+        if (cartProductId) {
+            updateCartProductRequest(cartProductId, newVal).done(function (response) {
+                updateProductTotalPrice(cartProductId, response)
+                updateCartTotal()
+            }).fail(ajaxErrorHandler)
+        }
     });
 
     // my code start
@@ -273,8 +274,9 @@
     const cartEndpoint = '/api/cart-products/'
     const favoriteEndpoint = '/api/favorite/'
 
-
+    // обновим информацию о корзине вверху страницы
     function updateTopCartInformation(count, total) {
+        console.log('updateTopCartInformation')
         $('span#cart-products-count').text(count)
         $('span#cart-products-total').text(total)
     }
@@ -304,10 +306,10 @@
     function updateCartTotal() {
         getCartInformationRequest().done(function (response) {
             if (response) {
-                // $('#cart-subtotal').text(response.total)
-                $('#cart-total').text(
-                    formatToDecimal(response.total)
-                )
+                const cartTotal = formatToDecimal(response.total)
+                const cartCount = response.count
+                $('#cart-total').text(cartTotal)
+                updateTopCartInformation(cartCount, cartTotal)
             }
         })
     }
@@ -394,9 +396,10 @@
         }
     }
 
-    let qtyInput = $('.pro-qty input')
+    // изменение количества товара в корзине
+    let qtyInput = $('.pro-qty.cart input')
     qtyInput.on('paste keyup', function (e) {
-        let cartProductId = $(this).data('product-id')
+        let cartProductId = $(this).data('cart-product-id')
         let count = $(this).val()
 
         updateCartProductRequest(cartProductId, count).done(function (response) {
@@ -405,6 +408,7 @@
         }).fail(ajaxErrorHandler)
     })
 
+    // сортировка товаров в списке
     let sortProducts = $('select#products-sort')
     sortProducts.change(function (e) {
         // https://developer.mozilla.org/en-US/docs/Web/API/URL
@@ -413,7 +417,7 @@
         document.location.href = url
     })
 
-
+    // подписка на новости
     function subscribeRequest(email) {
         return $.ajax({
             url: '/api/subscribe/',
@@ -435,6 +439,7 @@
         })
     })
 
+    // сообщение админу
     let contactsForm = $('#contact-form')
 
     function leaveMessageRequest(formData) {
@@ -458,6 +463,7 @@
         })
     })
 
+    // добавление товара в избранное
     function toggleToFavoriteRequest(product_id) {
         return $.ajax({
             url: favoriteEndpoint,

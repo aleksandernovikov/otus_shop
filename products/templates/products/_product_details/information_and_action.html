@@ -22,17 +22,16 @@
     </div>
     {% csrf_token %}
     <a href="#" class="primary-btn" id="add-to-cart" data-product-id="{{ product.id }}">{% trans 'ADD TO CARD' %}</a>
-    <a href="#" class="heart-icon">
+    <a href="#" class="heart-icon add-to-favorite" data-product-id="{{ product.id }}">
         <span class="icon_heart_alt"></span>
     </a>
     <ul>
-        <li><b>{% trans 'Availability' %}</b> <span>{% trans 'In Stock' %}</span></li>
-        <li>
-            <b>{% trans 'Shipping' %}</b> <span>01 day shipping. <samp>{% trans 'Free pickup today' %}</samp></span>
-        </li>
-        <li>
-            <b>{% trans 'Weight' %}</b> <span>0.5 kg</span>
-        </li>
+        {% for characteristic in product_characteristics %}
+            <li>
+                <b>{{ characteristic.measure.get_category_display }}</b>
+                <span>{{ characteristic.value }} {{ characteristic.measure.title }}</span>
+            </li>
+        {% endfor %}
 
         <li>
             <b>{% trans 'Share on' %}</b>
