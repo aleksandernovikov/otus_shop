@@ -267,7 +267,6 @@
             alert('Пожалуйста авторизуйтесь')
         else {
             alert(xhr.responseJSON)
-            console.log(xhr)
         }
     }
 
@@ -276,9 +275,8 @@
 
     // обновим информацию о корзине вверху страницы
     function updateTopCartInformation(count, total) {
-        console.log('updateTopCartInformation')
         $('span#cart-products-count').text(count)
-        $('span#cart-products-total').text(total)
+        $('span#cart-products-total').text(formatToDecimal(total))
     }
 
     // запрос добавления товара в корзину
@@ -459,7 +457,6 @@
             alert('Сообщение отправлено')
         }).fail(function (response) {
             alert('Ошибка при отправке сообщения')
-            console.log(response)
         })
     })
 
@@ -479,7 +476,6 @@
         e.preventDefault()
         const productId = $(this).data('product-id')
         toggleToFavoriteRequest(productId).done(function (response) {
-            console.log(response)
             $('#favorites').text(response.count)
         })
     })

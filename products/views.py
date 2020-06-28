@@ -1,16 +1,19 @@
 from django import views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import F, Sum, DecimalField
 from django.urls import reverse_lazy
 
 from .forms import OrderForm
 from .models.cart import CartProduct
-from .models.order import Order, OrderedProduct
+from .models.order import Order
 from .models.product_category import ProductCategory
 from .models.product import Product
+from .services import get_cart_products_max, get_cart_products_min, add_products_to_order
 
 
 class ShopMixin:
+    """
+    Базовый миксин для просмотра товаров магазина
+    """
     model = Product
     template_name = 'usability/pages/shop.html'
     paginate_by = 6
@@ -44,6 +47,10 @@ class ShopRootListView(ShopMixin, views.generic.ListView):
 
 
 class ShopCategoryListView(ShopMixin, views.generic.ListView):
+    """
+    Просмотр категории товаров
+    """
+
     def get_queryset(self):
         category_slug = self.kwargs.get('slug')
         return super().get_queryset().filter(category__slug=category_slug).prefetch_related('product_images')
@@ -89,34 +96,7 @@ class CartProductView(LoginRequiredMixin, views.generic.TemplateView):
         на странице корзины нужна информация о заказанных продуктах и сумме заказа
         """
         ctx = super().get_context_data(**kwargs)
-
-        cart_products = CartProduct.objects.filter(
-            owner=self.request.user
-        ).select_related(
-            'product'
-        ).values(
-            'count',
-        ).annotate(
-            cart_product_id=F('id'),
-            slug=F('product__slug'),
-            product_id=F('product__id'),
-            title=F('product__title'),
-            price=F('product__price'),
-        )
-
-        cart_products_ids = [product.get('product_id') for product in cart_products]
-        products = Product.objects.filter(pk__in=set(cart_products_ids)).prefetch_related('images')
-
-        images_dict = {}
-        for product in products:
-            images_dict[product.id] = product.main_image
-
-        full_cart_products = [{
-            **p,
-            'image': images_dict.get(p.get('product_id')),
-            'total': p.get('count') * p.get('price')
-        } for p in cart_products]
-
+        full_cart_products = get_cart_products_max(self.request.user)
         total = sum([product.get('total') for product in full_cart_products])
 
         ctx.update({
@@ -140,15 +120,7 @@ class OrderCreateView(LoginRequiredMixin, views.generic.CreateView):
         на форме нужна информация о заказанных продуктах и сумме заказа
         """
         ctx = super().get_context_data(**kwargs)
-
-        cart_products = CartProduct.objects.filter(
-            owner=self.request.user
-        ).select_related('product').values('count').annotate(
-            title=F('product__title'),
-            price=F('product__price'),
-            total=Sum(F('product__price') * F('count'), output_field=DecimalField())
-        )
-
+        cart_products = get_cart_products_min(self.request.user)
         ctx.update({
             'cart_products': cart_products
         })
@@ -169,12 +141,7 @@ class OrderCreateView(LoginRequiredMixin, views.generic.CreateView):
         """
         Создание снимка заказа и очистка корзины
         """
-        cart_products = CartProduct.objects.filter(
-            owner=self.request.user
-        ).select_related('product').values('product_id', 'count').annotate(
-            total=Sum(F('product__price') * F('count'), output_field=DecimalField()),
-            price=F('product__price'),
-        )
+        cart_products = get_cart_products_min(self.request.user)
 
         new_form = form.save(commit=False)
         new_form.user = self.request.user
@@ -182,14 +149,7 @@ class OrderCreateView(LoginRequiredMixin, views.generic.CreateView):
         new_form.save()
 
         # сохраним продукты заказа
-        ordered_products = [OrderedProduct(
-            order_id=new_form.pk,
-            product_id=cart_product.get('product_id'),
-            selling_price=cart_product.get('price'),
-            count=cart_product.get('count')
-        ) for cart_product in cart_products]
-
-        OrderedProduct.objects.bulk_create(ordered_products)
+        add_products_to_order(cart_products, new_form.pk)
         # очистим корзину
         CartProduct.empty_cart(self.request.user)
 

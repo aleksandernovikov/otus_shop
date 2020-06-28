@@ -3,7 +3,6 @@ from django.utils.functional import cached_property
 from pytils.translit import slugify
 from django.utils.translation import gettext_lazy as _
 
-# from products.models.measure import ProductMeasure, ProductCharacteristics
 from products.models.product_category import ProductCategory
 from products.models.product_image import ProductImage
 
