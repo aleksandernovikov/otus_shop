@@ -6,7 +6,7 @@
  - Any database supported by Django
 
 
-####Opportunities:
+#### Opportunities:
 
  - Nice responsive design 
  - SEO Friendly
