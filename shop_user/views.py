@@ -1,6 +1,7 @@
 from django import views
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 from django.urls import reverse_lazy
 
 from products.models.order import Order
@@ -18,7 +19,10 @@ class ShopUserProfile(LoginRequiredMixin, views.generic.UpdateView):
     success_url = reverse_lazy('user-profile')
 
     def get_object(self, queryset=None):
-        return User.objects.get(pk=self.request.user.id)
+        try:
+            return User.objects.get(pk=self.request.user.id)
+        except User.DoesNotExist:
+            raise Http404
 
 
 class ShopUserSignUp(views.generic.FormView):

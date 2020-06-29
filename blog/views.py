@@ -1,4 +1,5 @@
 from django import views
+from django.http import Http404
 
 from blog.models import Post, PostCategory
 
@@ -22,11 +23,13 @@ class BlogCategoryListView(BlogMixin, views.generic.ListView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
+        try:
+            ctx.update({
+                'category': PostCategory.objects.get(slug=self.kwargs.get('slug'))
+            })
+        except PostCategory.DoesNotExist:
+            raise Http404
 
-        ctx.update({
-            'category': PostCategory.objects.get(slug=self.kwargs.get('slug'))
-        })
-        
         return ctx
 
 

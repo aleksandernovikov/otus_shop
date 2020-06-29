@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # my apps
-    # 'reference',
     'usability',
     'products',
     'blog',

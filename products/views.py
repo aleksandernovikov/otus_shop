@@ -1,5 +1,6 @@
 from django import views
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 from django.urls import reverse_lazy
 
 from .forms import OrderForm
@@ -7,7 +8,11 @@ from .models.cart import CartProduct
 from .models.order import Order
 from .models.product_category import ProductCategory
 from .models.product import Product
-from .services import get_cart_products_max, get_cart_products_min, add_products_to_order
+from .services import (
+    get_cart_products_max,
+    get_cart_products_min,
+    add_products_to_order
+)
 
 
 class ShopMixin:
@@ -53,14 +58,21 @@ class ShopCategoryListView(ShopMixin, views.generic.ListView):
 
     def get_queryset(self):
         category_slug = self.kwargs.get('slug')
-        return super().get_queryset().filter(category__slug=category_slug).prefetch_related('product_images')
+        return super().get_queryset().filter(
+            category__slug=category_slug
+        ).prefetch_related('product_images')
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
 
-        ctx.update({
-            'category': ProductCategory.objects.get(slug=self.kwargs.get('slug'))
-        })
+        try:
+            slug = self.kwargs.get('slug')
+            ctx.update({
+                'category': ProductCategory.objects.get(slug=slug)
+            })
+        except ProductCategory.DoesNotExist:
+            raise Http404
+
         return ctx
 
 
@@ -93,7 +105,8 @@ class CartProductView(LoginRequiredMixin, views.generic.TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         """
-        на странице корзины нужна информация о заказанных продуктах и сумме заказа
+        на странице корзины нужна информация
+        о заказанных продуктах и сумме заказа
         """
         ctx = super().get_context_data(**kwargs)
         full_cart_products = get_cart_products_max(self.request.user)
@@ -139,13 +152,15 @@ class OrderCreateView(LoginRequiredMixin, views.generic.CreateView):
 
     def form_valid(self, form):
         """
-        Создание снимка заказа и очистка корзины
+        Create an order snapshot and empty the cart
         """
         cart_products = get_cart_products_min(self.request.user)
 
         new_form = form.save(commit=False)
         new_form.user = self.request.user
-        new_form.total_order_price = sum([product.get('total') for product in cart_products])
+        new_form.total_order_price = sum(
+            [product.get('total') for product in cart_products]
+        )
         new_form.save()
 
         # сохраним продукты заказа
