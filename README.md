@@ -26,7 +26,7 @@
  
 # Installation instruction
  - Clone repository `git clone https://github.com/aleksandernovikov/otus_shop.git`
- - Install Dependencies `cd otus-shop && pip install requirements.txt`
+ - Install Dependencies `cd otus-shop && pip install -r requirements.txt`
  - Make migrations `python manage.py migrate`
  - To fill in demo data, call the `python manage.py populate` command
  
