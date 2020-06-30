@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'ckeditor',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
