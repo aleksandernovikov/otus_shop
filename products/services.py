@@ -1,13 +1,12 @@
-from django.db.models import F, Sum, DecimalField
-
 from .models.cart import CartProduct
 from .models.order import OrderedProduct
 
 
 def get_cart_products_max(user):
     """
-    Товары из корзины с максимумом информации
+    Products from the cart with a maximum of information
     """
+    # everything below is done due to the model property main_image
     cart_products = CartProduct.objects.filter(
         owner=user
     ).select_related(
@@ -15,6 +14,7 @@ def get_cart_products_max(user):
     ).prefetch_related(
         'product__images'
     )
+
     result = [{
         'cart_product_id': cart_product.id,
         'slug': cart_product.product.slug,
@@ -25,23 +25,8 @@ def get_cart_products_max(user):
         'image': cart_product.product.main_image,
         'total': cart_product.product.price * cart_product.count,
     } for cart_product in cart_products]
+
     return result
-
-
-def get_cart_products_min(user):
-    """
-    Товары из корзины с минимумом информации
-    """
-    return CartProduct.objects.filter(
-        owner=user
-    ).select_related('product').values(
-        'count',
-        'product_id'
-    ).annotate(
-        title=F('product__title'),
-        price=F('product__price'),
-        total=Sum(F('product__price') * F('count'), output_field=DecimalField())
-    )
 
 
 def add_products_to_order(products, order_id):

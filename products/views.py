@@ -10,7 +10,6 @@ from .models.product_category import ProductCategory
 from .models.product import Product
 from .services import (
     get_cart_products_max,
-    get_cart_products_min,
     add_products_to_order
 )
 
@@ -99,7 +98,7 @@ class ProductDetailsView(views.generic.DetailView):
 
 class CartProductView(LoginRequiredMixin, views.generic.TemplateView):
     """
-    Вывод корзины с товарами
+    Products from the cart
     """
     template_name = 'usability/pages/cart.html'
 
@@ -130,31 +129,39 @@ class OrderCreateView(LoginRequiredMixin, views.generic.CreateView):
 
     def get_context_data(self, **kwargs):
         """
-        на форме нужна информация о заказанных продуктах и сумме заказа
+        on the form you need information about the ordered products and the order amount
         """
         ctx = super().get_context_data(**kwargs)
-        cart_products = get_cart_products_min(self.request.user)
         ctx.update({
-            'cart_products': cart_products
+            'cart_products': CartProduct.products.minimal_output(self.request.user)
         })
         return ctx
 
     def get_initial(self):
         """
-        Заполним форму данными, которые нам доступны
+        Fill out the form with the available data.
         """
         initial = super().get_initial()
+
+        latest_order = Order.objects.latest('order_created')
+
         initial.update({
-            'first_name': self.request.user.first_name,
-            'last_name': self.request.user.last_name,
+            'first_name': latest_order.first_name or self.request.user.first_name,
+            'last_name': latest_order.last_name or self.request.user.last_name,
+            'state': latest_order.state,
+            'city': latest_order.city,
+            'street': latest_order.street,
+            'building': latest_order.building,
+            'phone': latest_order.phone,
+            'post_code': latest_order.post_code,
         })
         return initial
 
     def form_valid(self, form):
         """
-        Create an order snapshot and empty the cart
+        Creates a snapshot of the order and then empties the cart.
         """
-        cart_products = get_cart_products_min(self.request.user)
+        cart_products = CartProduct.products.minimal_output(self.request.user)
 
         new_form = form.save(commit=False)
         new_form.user = self.request.user
@@ -163,9 +170,9 @@ class OrderCreateView(LoginRequiredMixin, views.generic.CreateView):
         )
         new_form.save()
 
-        # сохраним продукты заказа
+        # create snapshot
         add_products_to_order(cart_products, new_form.pk)
-        # очистим корзину
+        # empty the cart
         CartProduct.empty_cart(self.request.user)
 
         return super().form_valid(form)
