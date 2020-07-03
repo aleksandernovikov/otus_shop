@@ -10,9 +10,12 @@
 
     {% shop_categories_carousel %}
 
-    {% include '_featured/main.html' %}
+    <section class="featured spad">
+        {% featured_products %}
+    </section>
+
     {% include '_banner/main.html' %}
-{#    {% include 'products/_top_products/main.html' %}#}
+    {#    {% include 'products/_top_products/main.html' %}#}
 
     {% trans 'From The Blog' as related_heading %}
     {% related_posts title=related_heading %}

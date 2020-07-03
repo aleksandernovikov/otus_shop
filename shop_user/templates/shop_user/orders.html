@@ -21,12 +21,15 @@
                     {% for order in order_list %}
                         <div class="order-item">
                             <div class="order-title">
-                                {% trans 'Order' %} #{{ forloop.counter }} {% trans 'from date' %} {{ order.order_created }}
+                                {% trans 'Order' %}
+                                #{{ forloop.counter }} {% trans 'from date' %} {{ order.order_created }}
                             </div>
                             <div class="order-block">
                                 {% trans 'Sum' %} {{ order.total_order_price }} {{ site.currency }}
                             </div>
                         </div>
+                    {% empty %}
+                        <dic class="h5 text-center">{% trans 'No orders' %}</dic>
                     {% endfor %}
                 </div>
             </div>

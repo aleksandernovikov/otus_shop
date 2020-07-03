@@ -142,20 +142,25 @@ class OrderCreateView(LoginRequiredMixin, views.generic.CreateView):
         Fill out the form with the available data.
         """
         initial = super().get_initial()
-
-        latest_order = Order.objects.latest('order_created')
-
-        initial.update({
-            'first_name': latest_order.first_name or self.request.user.first_name,
-            'last_name': latest_order.last_name or self.request.user.last_name,
-            'state': latest_order.state,
-            'city': latest_order.city,
-            'street': latest_order.street,
-            'building': latest_order.building,
-            'phone': latest_order.phone,
-            'post_code': latest_order.post_code,
-        })
-        return initial
+        try:
+            latest_order = Order.objects.latest('order_created')
+            initial.update({
+                'first_name': latest_order.first_name,
+                'last_name': latest_order.last_name,
+                'state': latest_order.state,
+                'city': latest_order.city,
+                'street': latest_order.street,
+                'building': latest_order.building,
+                'phone': latest_order.phone,
+                'post_code': latest_order.post_code
+            })
+            return initial
+        except Order.DoesNotExist:
+            initial.update({
+                'first_name': self.request.user.first_name,
+                'last_name': self.request.user.last_name,
+            })
+            return initial
 
     def form_valid(self, form):
         """

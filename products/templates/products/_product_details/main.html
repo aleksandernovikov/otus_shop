@@ -1,4 +1,4 @@
-{% load static %}
+{% load static shop_tags %}
 <section class="product-details spad">
     <div class="container">
         <div class="row">
@@ -18,5 +18,5 @@
 </section>
 
 <section class="related-product">
-    {% include 'products/_product_details/related_products.html' %}
+    {% related_products product %}
 </section>
