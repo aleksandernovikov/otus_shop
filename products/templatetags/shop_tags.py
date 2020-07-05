@@ -63,5 +63,6 @@ def featured_products() -> dict:
 
     return {
         'featured_products': products,
-        'categories': categories
+        'categories': categories,
+        'site': settings.SITE_DATA
     }

@@ -4,21 +4,7 @@
         {% thumbnail product.main_image 262x270 crop as thumb %}
         <div class="product__item__pic set-bg" data-setbg="{{ thumb.url }}">
             <ul class="product__item__pic__hover">
-                <li>
-                    <a href="#" data-product-id="{{ product.id }}" class="add-to-favorite">
-                        <i class="fa fa-heart"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-retweet"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-product-id="{{ product.id }}" class="add-to-cart">
-                        <i class="fa fa-shopping-cart"></i>
-                    </a>
-                </li>
+                {% include 'product_links.html' with product=product %}
             </ul>
         </div>
         <div class="product__item__text">
