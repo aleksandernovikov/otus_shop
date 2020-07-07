@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class ProductMeasure(models.Model):
     """
-    Единицы измерения
+    Measure unit
     """
     NOT_SELECTED = 0
     MEASURE_WEIGHT = 1
@@ -12,7 +12,7 @@ class ProductMeasure(models.Model):
     MEASURE_LENGTH = 3
 
     MEASURE_CATEGORIES = (
-        (NOT_SELECTED, _('Measure not selected')),
+        (NOT_SELECTED, _('Measure category is not selected')),
         (MEASURE_WEIGHT, _('Weight')),
         (MEASURE_QUANTITY, _('Quantity')),
         (MEASURE_LENGTH, _('Length'))
@@ -27,7 +27,7 @@ class ProductMeasure(models.Model):
 
 class ProductCharacteristic(models.Model):
     """
-    Характеристики товара
+    Product characteristic
     """
     product = models.ForeignKey('Product', related_name='product_characteristics', on_delete=models.CASCADE)
     measure = models.ForeignKey(ProductMeasure, on_delete=models.CASCADE)

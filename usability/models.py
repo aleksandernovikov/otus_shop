@@ -23,7 +23,7 @@ class AdminMessage(models.Model):
     name = models.CharField(_('Name'), max_length=70)
     email = models.EmailField(_('Email'))
     message = models.TextField(_('Message'), max_length=1000)
-    created = models.DateTimeField(auto_now=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True, blank=True)
     ip = models.GenericIPAddressField(_('Ip'))
 
     class Meta:

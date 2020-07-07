@@ -59,7 +59,7 @@ def related_products(product: Product, products_count: int = 4) -> dict:
 @register.inclusion_tag('tags/featured_products.html')
 def featured_products() -> dict:
     products: QuerySet = find_related_products(None, 8)
-    categories = {p.category.slug: p.category.title for p in products}
+    categories: dict = {p.category.slug: p.category.title for p in products}
 
     return {
         'featured_products': products,

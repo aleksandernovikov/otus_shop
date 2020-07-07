@@ -1,13 +1,24 @@
-from decimal import Decimal
-
 from django.db.models import F
-from rest_framework import viewsets, status
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
+from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .serializers import DefaultCartProductSerializer, ShortCartProductSerializer
+from .filters import ProductFilter
+from .serializers import DefaultCartProductSerializer, ShortCartProductSerializer, ShortProductSerializer
 from ..models.cart import CartProduct
+from ..models.product import Product
+
+
+class ProductList(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ShortProductSerializer
+    filter_backends = filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend
+    filterset_class = ProductFilter
+    search_fields = 'title', 'description', 'price',
+    ordering_fields = 'sort_order', 'price',
 
 
 class CartProductViewSet(viewsets.ModelViewSet):

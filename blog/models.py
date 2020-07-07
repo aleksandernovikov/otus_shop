@@ -30,8 +30,11 @@ class PostCategory(MP_Node):
 
 
 class Post(models.Model):
+    """
+    Blog post
+    """
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    publication_date = models.DateTimeField(auto_now=True)
+    publication_date = models.DateTimeField(auto_now_add=True)
 
     category = models.ForeignKey(PostCategory, related_name='posts', on_delete=models.CASCADE)
 
@@ -51,3 +54,8 @@ class Post(models.Model):
         from django.utils.html import strip_tags
         text_only = re.sub('[ \t\n]+', ' ', strip_tags(self.text))
         return text_only.strip()
+
+    class Meta:
+        verbose_name = _('Post')
+        verbose_name_plural = _('Posts')
+        ordering = 'publication_date',

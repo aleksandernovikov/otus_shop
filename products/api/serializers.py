@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
-from products.models.cart import CartProduct
-from products.models.product import Product
+from ..models.cart import CartProduct
+from ..models.product import Product
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ShortProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = 'title', 'price',
@@ -19,4 +19,4 @@ class ShortCartProductSerializer(serializers.ModelSerializer):
 
 
 class DefaultCartProductSerializer(ShortCartProductSerializer):
-    product = ProductSerializer()
+    product = ShortProductSerializer()

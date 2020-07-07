@@ -17,7 +17,7 @@ class Product(models.Model):
 
     description = models.TextField(_('description'), blank=True)
 
-    price = models.DecimalField(_('Selling price'), decimal_places=2, max_digits=5,
+    price = models.DecimalField(_('Selling price'), decimal_places=2, max_digits=9,
                                 help_text=_('Price at which the product will be sold'))
 
     characteristics = models.ManyToManyField('ProductMeasure', through='ProductCharacteristic', blank=True,
