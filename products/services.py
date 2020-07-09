@@ -11,7 +11,7 @@ def get_cart_products_max(user):
     """
     Products from the cart with a maximum of information
     """
-    # everything below is done due to the model property main_image
+    # everything below is made due to the model property main_image
     cart_products = CartProduct.objects.filter(
         owner=user
     ).select_related(
