@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.db.models import F, Sum, Count, DecimalField
+from django.db.models import F, Sum, Count, DecimalField, QuerySet
 from django.utils.translation import gettext_lazy as _
 
 from ..models.product import Product
@@ -9,10 +9,13 @@ User = get_user_model()
 
 
 class ProductManager(models.Manager):
-    def get_queryset(self):
+    """
+    Product Manager with some user methods
+    """
+    def get_queryset(self) -> QuerySet:
         return super().get_queryset().select_related('product')
 
-    def minimal_output(self, user):
+    def minimal_output(self, user) -> QuerySet:
         return self.get_queryset().filter(owner=user).values(
             'count', 'product_id'
         ).annotate(
@@ -32,11 +35,11 @@ class CartProduct(models.Model):
     objects = models.Manager()
     products = ProductManager()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.product} x {self.count}'
 
     @staticmethod
-    def cart_products_minimal(user):
+    def cart_products_minimal(user) -> dict:
         """
         Used in the context processor on each page,
         to show the amount and quantity of products in the cart
@@ -53,11 +56,11 @@ class CartProduct(models.Model):
         return result
 
     @staticmethod
-    def empty_cart(user):
+    def empty_cart(user) -> tuple:
         """
         Empty the cart
         """
-        CartProduct.objects.filter(owner=user).delete()
+        return CartProduct.objects.filter(owner=user).delete()
 
     class Meta:
         verbose_name = _('Cart Product')

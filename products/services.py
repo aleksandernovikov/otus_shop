@@ -51,15 +51,12 @@ def add_products_to_order(products, order_id: int):
 def find_related_products(parent_product_id: int = None, sample_size: int = 4) -> QuerySet:
     """
     the simplest algorithm for selecting related products
-
     Separated logic for convenience changes
     """
-    qs = Product.objects.all()
 
-    if parent_product_id is not None:
-        qs = qs.exclude(id=parent_product_id)
+    all_products_list = list(Product.objects.values_list('id', flat=True))
+    random_product_ids = sample(all_products_list, min(len(all_products_list), sample_size + 1))
 
-    all_products = qs.values_list('id', flat=True)
-    random_product_ids = sample(list(all_products), min(len(all_products), sample_size))
-
-    return Product.objects.filter(id__in=random_product_ids)
+    return Product.objects.filter(id__in=random_product_ids).exclude(
+        id=parent_product_id
+    ).select_related('category').prefetch_related('product_images')[:sample_size]

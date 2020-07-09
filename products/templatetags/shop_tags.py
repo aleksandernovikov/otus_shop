@@ -35,8 +35,10 @@ def sale_block(max_count: int = 6) -> dict:
 
 
 @register.inclusion_tag('tags/shop_categories_carousel.html')
-def shop_categories_carousel() -> dict:
-    categories: QuerySet = ProductCategory.objects.filter(image__isnull=False).values('title', 'slug', 'image')[:8]
+def shop_categories_carousel(carousel_size: int = 8) -> dict:
+    categories: QuerySet = ProductCategory.objects.filter(image__isnull=False).values(
+        'title', 'slug', 'image'
+    )[:carousel_size]
 
     return {
         'categories': categories
@@ -46,18 +48,19 @@ def shop_categories_carousel() -> dict:
 @register.inclusion_tag('tags/related_products.html')
 def related_products(product: Product, products_count: int = 4) -> dict:
     """
-    data for the tag of related products
+    data for the related products
     """
-    products: QuerySet = find_related_products(product.id, products_count)
-
     return {
-        'related_products': products,
+        'related_products': find_related_products(product.id, products_count),
         'site': settings.SITE_DATA
     }
 
 
 @register.inclusion_tag('tags/featured_products.html')
 def featured_products() -> dict:
+    """
+    featured products block from the index page
+    """
     products: QuerySet = find_related_products(None, 8)
     categories: dict = {p.category.slug: p.category.title for p in products}
 

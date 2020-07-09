@@ -3,97 +3,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.urls import reverse_lazy
 
-from .forms import OrderForm
-from .models.cart import CartProduct
-from .models.order import Order
-from .models.product_category import ProductCategory
-from .models.product import Product
-from .services import (
+from products.forms import OrderForm
+from products.models.cart import CartProduct
+from products.models.order import Order
+from products.models.product_category import ProductCategory
+from products.models.product import Product
+from products.services import (
     get_cart_products_max,
     add_products_to_order
 )
-
-
-class ShopMixin:
-    """
-    Базовый миксин для просмотра товаров магазина
-    """
-    model = Product
-    template_name = 'usability/pages/shop.html'
-    paginate_by = 6
-    allowed_sort_params = ('price', '-price')
-
-    def get_queryset(self):
-        """
-        Сортровки на страницах магазина
-        """
-        sort_param = self.request.GET.get('sort')
-        queryset = self.model.objects.all()
-
-        if sort_param in self.allowed_sort_params:
-            return queryset.order_by(sort_param)
-
-        return queryset
-
-    def get_context_data(self, *args, **kwargs):
-        ctx = super().get_context_data(*args, **kwargs)
-        sort_param = self.request.GET.get('sort')
-        if sort_param in self.allowed_sort_params:
-            ctx.update({
-                'current_sorting': sort_param
-            })
-        return ctx
-
-
-class ShopRootListView(ShopMixin, views.generic.ListView):
-    def get_queryset(self):
-        return super().get_queryset().prefetch_related('product_images')
-
-
-class ShopCategoryListView(ShopMixin, views.generic.ListView):
-    """
-    Просмотр категории товаров
-    """
-
-    def get_queryset(self):
-        category_slug = self.kwargs.get('slug')
-        return super().get_queryset().filter(
-            category__slug=category_slug
-        ).prefetch_related('product_images')
-
-    def get_context_data(self, *args, **kwargs):
-        ctx = super().get_context_data(*args, **kwargs)
-
-        try:
-            slug = self.kwargs.get('slug')
-            ctx.update({
-                'category': ProductCategory.objects.get(slug=slug)
-            })
-        except ProductCategory.DoesNotExist:
-            raise Http404
-
-        return ctx
-
-
-class ProductDetailsView(views.generic.DetailView):
-    """
-    Страница товара
-    """
-    model = Product
-    template_name = 'usability/pages/product_details.html'
-
-    def get_context_data(self, *args, **kwargs):
-        """
-        Пробросим данные о фотографиях товара, чтобы не делать запрос в шаблоне
-        """
-        ctx = super().get_context_data(**kwargs)
-        product = self.get_object()
-
-        ctx.update({
-            'product_images': product.product_images.all(),
-            'product_characteristics': product.product_characteristics.all()
-        })
-        return ctx
 
 
 class CartProductView(LoginRequiredMixin, views.generic.TemplateView):

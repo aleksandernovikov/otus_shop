@@ -30,7 +30,7 @@ class ProductCharacteristic(models.Model):
     Product characteristic
     """
     product = models.ForeignKey('Product', related_name='product_characteristics', on_delete=models.CASCADE)
-    measure = models.ForeignKey(ProductMeasure, on_delete=models.CASCADE)
+    measure = models.ForeignKey(ProductMeasure, related_name='product_characteristics', on_delete=models.CASCADE)
     value = models.PositiveSmallIntegerField(default=1)
 
     def __str__(self):
