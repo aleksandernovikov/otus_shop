@@ -1,4 +1,4 @@
-{% load static thumbnail %}
+{% load static thumbnail shop_tags %}
 <div class="col-lg-4 col-md-6 col-sm-6">
     <div class="product__item">
         {% thumbnail product.main_image 262x270 crop as thumb %}
@@ -12,7 +12,7 @@
                 <a href="{% url 'product-details' product.slug %}">{{ product.title }}</a>
             </h6>
             <h5>
-                {{ product.price }} {{ site.currency }}
+                {{ product.price|currency }}
             </h5>
         </div>
     </div>

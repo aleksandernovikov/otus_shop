@@ -1,4 +1,4 @@
-{% load thumbnail %}
+{% load thumbnail shop_tags %}
 <tr id="product-{{ product.cart_product_id }}">
     <td class="shoping__cart__item">
         {% thumbnail product.image 100x100 crop as thumb %}
@@ -8,7 +8,7 @@
         </h5>
     </td>
     <td class="shoping__cart__price">
-        {{ product.price }} {{ site.currency }}
+        {{ product.price|currency }}
     </td>
     <td class="shoping__cart__quantity">
         <div class="quantity">

@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n shop_tags %}
 <div class="product__details__text">
     <h3>{{ product.title }}</h3>
     {#    <div class="product__details__rating">#}
@@ -10,7 +10,7 @@
     {#        <span>(18 reviews)</span>#}
     {#    </div>#}
     <div class="product__details__price">
-        {{ product.price }} {{ site.currency }}
+        {{ product.price|currency }}
     </div>
     <p>{{ product.description|safe }}</p>
     <div class="product__details__quantity">

@@ -11,7 +11,7 @@ class UserSignUpForm(UserCreationForm):
         fields = ("username", "email",)
 
 
-class UserProfileForm(forms.ModelForm):
+class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('avatar', 'first_name', 'middle_name', 'last_name', 'short_description')

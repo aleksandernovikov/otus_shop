@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from shop_user.models import ShopUser
+from shop_user.models import Customer
 
 
-@admin.register(ShopUser)
-class ShopUserAdmin(admin.ModelAdmin):
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
     search_fields = 'username', 'last_name'

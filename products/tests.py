@@ -3,7 +3,7 @@ from rest_framework.test import APITestCase
 
 from products.models.cart import CartProduct
 from products.models.product import Product
-from shop_user.models import ShopUser
+from shop_user.models import Customer
 
 
 class TestApiCartProducts(APITestCase):
@@ -11,7 +11,7 @@ class TestApiCartProducts(APITestCase):
 
     def setUp(self) -> None:
         self.base_url = '/api/cart-products/'
-        self.user = ShopUser.objects.first()
+        self.user = Customer.objects.first()
 
     @staticmethod
     def _add_to_cart(user, product, count):

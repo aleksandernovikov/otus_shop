@@ -5,7 +5,7 @@ from django.http import Http404
 from django.urls import reverse_lazy
 
 from products.models.order import Order
-from shop_user.forms import UserSignUpForm, UserProfileForm
+from shop_user.forms import UserSignUpForm, CustomerProfileForm
 
 User = get_user_model()
 
@@ -15,7 +15,7 @@ class ShopUserProfile(LoginRequiredMixin, views.generic.UpdateView):
     Профиль пользователя
     """
     template_name = 'shop_user/profile.html'
-    form_class = UserProfileForm
+    form_class = CustomerProfileForm
     success_url = reverse_lazy('user-profile')
 
     def get_object(self, queryset=None):

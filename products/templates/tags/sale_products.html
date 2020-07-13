@@ -1,4 +1,4 @@
-{% load thumbnail %}
+{% load thumbnail shop_tags %}
 <div class="product__discount__slider owl-carousel">
     {% for product in sale_products %}
         <div class="col-lg-4">
@@ -16,8 +16,8 @@
                     <h5>
                         <a href="{% url 'product-details' product.slug %}">{{ product.title }}</a>
                     </h5>
-                    <div class="product__item__price">{{ product.price }} {{ site.currency }}
-                        <span>{{ product.strikeout_price }} {{ site.currency }}</span>
+                    <div class="product__item__price">{{ product.price|currency }}
+                        <span>{{ product.strikeout_price|currency }}</span>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ def avatar_upload_directory(instance, filename, prefix=None, unique=False):
     return os.path.join('avatars', name)
 
 
-class ShopUser(AbstractUser):
+class Customer(AbstractUser):
     avatar = ThumbnailerImageField(_('Avatar'), upload_to=avatar_upload_directory, blank=True)
     short_description = models.CharField(_('Short Description'), max_length=30, blank=True)
 

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n shop_tags %}
 
 {% block title %}
     {% trans 'User orders' %}
@@ -25,7 +25,7 @@
                                 #{{ forloop.counter }} {% trans 'from date' %} {{ order.order_created }}
                             </div>
                             <div class="order-block">
-                                {% trans 'Sum' %} {{ order.total_order_price }} {{ site.currency }}
+                                {% trans 'Sum' %} {{ order.total_order_price|currency }}
                             </div>
                         </div>
                     {% empty %}

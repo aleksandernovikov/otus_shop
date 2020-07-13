@@ -1,3 +1,5 @@
+import locale
+
 from django import template
 from django.conf import settings
 from django.db.models import QuerySet
@@ -69,3 +71,18 @@ def featured_products() -> dict:
         'categories': categories,
         'site': settings.SITE_DATA
     }
+
+
+@register.filter(name='currency')
+def currency(value):
+    """
+    Template tag which adds a currency sign according to the selected locale.
+    """
+    selected_locale = locale.getlocale()
+    try:
+        locale.setlocale(locale.LC_ALL, selected_locale)
+    except:
+        locale.setlocale(locale.LC_ALL, '')
+
+    loc = locale.localeconv()
+    return locale.currency(value, loc['currency_symbol'], grouping=True)
