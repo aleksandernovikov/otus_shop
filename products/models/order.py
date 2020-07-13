@@ -11,18 +11,22 @@ User = get_user_model()
 
 class Order(models.Model):
     """
-    Модель заказа
+    Order model
     """
     ORDER_CREATED = 1
     ORDER_AWAITING_PAYMENT = 2
     ORDER_PAID = 3
-    ORDER_READY_FOR_DELIVERY = 4
+    ORDER_PROCESSED = 4
+    ORDER_SHIPPED = 5
+    ORDER_CANCELLED = 6
 
     ORDER_STATUS = (
-        (ORDER_CREATED, _('created')),
-        (ORDER_AWAITING_PAYMENT, _('awaiting payment')),
-        (ORDER_PAID, _('paid')),
-        (ORDER_READY_FOR_DELIVERY, _('order is ready for delivery'))
+        (ORDER_CREATED, _('Created')),
+        (ORDER_AWAITING_PAYMENT, _('Awaiting payment')),
+        (ORDER_PAID, _('Paid')),
+        (ORDER_PROCESSED, _('Order is ready for delivery')),
+        (ORDER_SHIPPED, _('Order shipped')),
+        (ORDER_CANCELLED, _('Order cancelled'))
     )
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -48,7 +52,7 @@ class Order(models.Model):
     order_status = models.PositiveSmallIntegerField(_('Order status'), choices=ORDER_STATUS, default=ORDER_CREATED)
 
     products = models.ManyToManyField(Product, through='OrderedProduct')
-    total_order_price = models.DecimalField(decimal_places=2, max_digits=7)
+    total_order_price = models.DecimalField(decimal_places=2, max_digits=9)
 
     def __str__(self):
         return f'{self.user} {self.order_created}'
@@ -60,7 +64,7 @@ class OrderedProduct(models.Model):
     """
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='ordered_products')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    selling_price = models.DecimalField(max_digits=7, decimal_places=2)
+    selling_price = models.DecimalField(max_digits=9, decimal_places=2)
     count = models.PositiveSmallIntegerField()
 
     def __str__(self):
