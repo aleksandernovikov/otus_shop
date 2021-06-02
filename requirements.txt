@@ -12,4 +12,4 @@ pytils==0.3
 pytz==2020.1
 sentry-sdk==0.15.1
 sqlparse==0.3.1
-urllib3==1.25.9
+urllib3==1.26.5
