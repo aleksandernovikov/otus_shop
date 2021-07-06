@@ -1,6 +1,6 @@
 [
   {
-    "model": "shop_user.shopuser",
+    "model": "shop_user.customer",
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$180000$yLDiWxVUrVY0$qMTcJvp5WvkX8z/iQ+0ydRikCSRFiQFLsqPfNk6KNR0=",
@@ -21,7 +21,7 @@
     }
   },
   {
-    "model": "shop_user.shopuser",
+    "model": "shop_user.customer",
     "pk": 2,
     "fields": {
       "password": "123",
