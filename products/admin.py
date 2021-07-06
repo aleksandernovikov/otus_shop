@@ -56,7 +56,6 @@ class ProductCategoryAdmin(TreeAdmin):
         'description', 'image',
         ('show_in_top', 'show_in_sidebar'),
         ('_ref_node_id', '_position'))
-    ordering = 'title',
     search_fields = 'title', 'slug'
 
 
