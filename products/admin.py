@@ -80,3 +80,5 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(ProductMeasure)
 class ProductMeasureAdmin(admin.ModelAdmin):
     pass
+
+
