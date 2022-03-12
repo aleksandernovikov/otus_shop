@@ -7,7 +7,7 @@ django-js-asset==1.2.2
 django-treebeard==4.5.1
 djangorestframework==3.12.4
 easy-thumbnails==2.7.1
-Pillow==8.3.0
+Pillow==9.0.1
 pytils==0.3
 pytz==2021.1
 sentry-sdk==1.1.0
