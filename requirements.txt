@@ -1,6 +1,6 @@
 asgiref==3.4.1
 certifi==2021.5.30
-Django==3.2.5
+Django==3.2.14
 django-ckeditor==6.1.0
 django-filter==2.4.0
 django-js-asset==1.2.2
